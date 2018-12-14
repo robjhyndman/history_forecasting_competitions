@@ -135,6 +135,14 @@ This supports the general consensus in forecasting, that neural networks (and ot
 
 There were some follow-up competitions^[http://www.neural-forecasting-competition.com/], but as far as I know none of the results have ever been published.
 
+## Sante Fe competitions
+
+There was the Santa Fe based competitions too which were all about nonlinear models and time series.
+
+https://www.semanticscholar.org/paper/The-Future-of-Time-Series-Gershenfeld-Weigend/1d49bdde1d2a18c6a3c1f2fca8ee0fb083cc9233
+
+
+
 ## Kaggle time series competitions {-}
 
 Few Kaggle competitions^[https://www.kaggle.com/competitions] have involved time series forecasting; mostly they are about cross-sectional prediction or classification. However, there have been some notable exceptions.
@@ -152,6 +160,29 @@ Makridakis is now at it again with the [M4 competition](https://www.m4.unic.ac.c
  * Weekly, daily and hourly data are included, along with annual, quarterly and monthly data.
  * Participants are invited to submit prediction intervals as well as point forecasts.
  * There is a strong emphasis on reproducibility (a problem with earlier competitions), and competitors will be required to post their code on Github.
+
+## KDD cup
+
+The data mining community have the annual [KDD cup](http://kdd.org/kdd-cup) which has generated attention on a wide range of prediction problems and associated methods. Recent KDD cups are [hosted on kaggle](https://www.kaggle.com/c/kdd-cup-2014-predicting-excitement-at-donors-choose).
+
+I'd like to draw your attention to KDD Cup 2018 as well. Since 1997, KDD Cup has been a prestigious annual data mining competition organized by ACM SIGKDD.
+
+KDD Cup 2018 is a timeseries competition, where participants are asked to predict air pollution levels over the coming 48 hours for two cities, Beijing, China, and London, UK.
+
+Unlike previous timeseries competitions, we provide the real time data API, and during the test phase (5/2018), everyday participants need to pull new data, generate 48 hour forecast, and submit it for evaluation.
+
+We hope that this setup addresses some of major critics/problems on previous competitions such as:
+* Winning solutions that are too complex: Since teams need to train their models everyday with new data, it cannot be too complex.
+* Data leakage for the test data: Since the test data set is strictly from the future, there cannot be leakage.
+* Metrics that are not aligned with real world use cases: The setup mimics the forecasting pipeline in practice (not one time forecasting, but continuous forecasting over time with new data).
+
+Please check out the KDD Cup 2018 website for more information: https://biendata.com/compet...
+https://www.kdd.org/kdd2018/kdd-cup
+https://biendata.com/competition/kdd_2018
+
+  2. [Roy et al (2013). The Microsoft Academic Search Dataset and KDD Cup 2013](http://www.kdd.org/kddcup2013/sites/default/files/papers/papers.pdf).
+
+
 
 # Future competitions?
 
@@ -177,15 +208,13 @@ The data from many of these competitions are available as R packages.
 A useful discussion of forecasting competitions and their history is provided by [Fildes, R., & Ord, K. (2002). Forecasting competitions: their role in improving forecasting practice and research. In M. Clements & D. Hendry (Eds.), *A companion to economic forecasting* (pp. 322–353). Oxford, Blackwell.](https://doi.org/10.1002/9780470996430.ch15)
 
 
-The data mining community have the annual [KDD cup](http://kdd.org/kdd-cup) which has generated attention on a wide range of prediction problems and associated methods. Recent KDD cups are [hosted on kaggle](https://www.kaggle.com/c/kdd-cup-2014-predicting-excitement-at-donors-choose).
+
+
 
 In my research group meeting today, we discussed our (limited) experiences in competing in some [Kaggle competitions](https://www.kaggle.com/competitions), and we reviewed the following two papers which describe two prediction competitions:
 
 
   1. [Athanasopoulos and Hyndman (IJF 2011). The value of feedback in forecasting competitions](http://dx.doi.org/10.1016/j.ijforecast.2011.03.002). [[preprint version](/papers/kaggle.pdf)]
-
-
-  2. [Roy et al (2013). The Microsoft Academic Search Dataset and KDD Cup 2013](http://www.kdd.org/kddcup2013/sites/default/files/papers/papers.pdf).
 
 
 
