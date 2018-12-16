@@ -62,7 +62,7 @@ There was also a strong bias against automatic forecasting procedures. For examp
 
 > "The fact remains that model building is best done by the human brain and is inevitably an iterative process."
 
-Perhaps Jenkins was reflecting the widely-held view that the type of intuitive thinking involved in model building cannot be represented by an algorithm or mathematical model.  Subsequent history has shown that to be untrue provided enough data is available, and the model is flexible enough to capture the variation seen in real data.
+Perhaps Jenkins was reflecting the widely-held view that the type of intuitive thinking and extensive experience typicallyinvolved in model building cannot be represented by an algorithm or mathematical model. Subsequent history has shown that to be untrue provided enough data is available, and the model is flexible enough to capture the variation seen in real data.
 
 ## Makridakis & Hibon (1979) {-}
 
@@ -94,16 +94,16 @@ Again, Makridakis & Hibon responded:
 
 In response to the hostility and charge of incompetence, Makridakis & Hibon followed up with a new competition involving 1001 series. This time anyone could submit forecasts, making this the first true forecasting competition (between multiple people) as far as I am aware. They also used multiple forecast measures to determine the most accurate method.
 
-The 1001 time series were taken from demography, industry and economics, and ranged in length between 9 and 132 observations. All the data were either non-seasonal (e.g., annual), quarterly or monthly. Curiously, all the data were positive, which made it possibly to compute mean absolute percentage errors, but was not really reflective of the population of real data.
+The 1001 time series were taken from demography, industry and economics, and ranged in length between 9 and 132 observations. All the data were either non-seasonal (e.g., annual), quarterly or monthly. Curiously, all the data were positive, which made it possible to compute mean absolute percentage errors, but was not really reflective of the population of real data.
 
 The results of their 1979 paper were largely confirmed. The four main findings [taken from @M3] were:
 
- 1.  Statistically sophisticated or complex methods do not necessarily provide more accurate forecasts than simpler ones.
- 1.  The relative ranking of the performance of the various methods varies according to the accuracy measure being used.
- 1.  The accuracy when various methods are being combined outperforms, on average, the individual methods being combined and does very well in comparison to other methods.
- 1.  The accuracy of the various methods depends upon the length of the forecasting horizon involved.
+ 1. Statistically sophisticated or complex methods do not necessarily provide more accurate forecasts than simpler ones.
+ 1. The relative ranking of the performance of the various methods varies according to the accuracy measure being used.
+ 1. The accuracy when various methods are being combined outperforms, on average, the individual methods being combined and does very well in comparison to other methods.
+ 1. The accuracy of the various methods depends upon the length of the forecasting horizon involved.
 
-Remarkably, the best performing method overall used a classical multiplicative decomposition [@fpp2], with simple exponential smoothing used to forecast the seasonally adjusted data, and a seasonal naive method used to forecast the seasonal component. The two forecasts were then combined.
+Remarkably, the best performing method overall used a classical multiplicative decomposition [@fpp2], with simple exponential smoothing used to forecast the seasonally adjusted data, and a seasonal naive method used to forecast the seasonal component. The two forecasts were then combined. This extremely simple, and somewhat ad hoc approach, out-performed the best that experienced academic researchers could produce.
 
 The paper describing the competition [@M1] had a profound effect on forecasting research. It caused researchers to:
 
@@ -132,7 +132,7 @@ The other method that performed extremely well in the M3 competition was the com
 
 ## Neural network competitions {-}
 
-There was only one submission that used neural networks in the M3 competition, but it did relatively poorly. To encourage additional submissions, Sven Crone  organized a subsequent competition (the NN3^[http://www.neural-forecasting-competition.com/NN3]) was organized in 2006 involving 111 of the monthly M3 series. Over 60 algorithms were submitted, although none outperformed the original M3 contestants. The paper describing the competition results [@NN3] was not published until 2011.
+There was only one submission that used neural networks in the M3 competition, but it did relatively poorly. To encourage additional submissions, Sven Crone organized a subsequent competition (the NN3^[http://www.neural-forecasting-competition.com/NN3]) was organized in 2006 involving 111 of the monthly M3 series. Over 60 algorithms were submitted, although none outperformed the original M3 contestants. The paper describing the competition results [@NN3] was not published until 2011.
 
 This supports the general consensus in forecasting, that neural networks (and other highly non-linear and nonparametric methods) are not well suited to time series forecasting due to the relatively short nature of most time series. The longest series in this competition was only 126 observations long. That is simply not enough data to fit a good neural network model.
 
