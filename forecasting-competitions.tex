@@ -110,7 +110,7 @@
   {\thesubsection}
   {0.4em}{}
 \titlespacing{\section}{0pt}{*5}{*1}
-\titlespacing{\section}{0pt}{*2}{*0.2}
+\titlespacing{\subsection}{0pt}{*2}{*0.2}
 
 
 %% TITLE PAGE
@@ -272,6 +272,7 @@ Department of Econometrics \& Business Statistics\newline Monash University, Cla
 \makeatother
 
 \spacing{1.1}
+\usepackage[lf,t]{carlito}
 
 
 \begin{document}
@@ -285,14 +286,16 @@ blah, blah
 
 \footnotetext[1]{An early version of this article appeared as a blog post at \url{https://robjhyndman.com/hyndsight/forecasting-competitions/}.}
 
-Prediction competitions go back millenia, with rival Greek diviners competing to predict the future more accurately \autocite[p124]{Raphals2013}. However, for general time series forecasting, the history is much more limited, and only goes back about 50 years.
+Prediction competitions go back millenia, with rival Greek diviners competing to predict the future more accurately \autocite[p124]{Raphals2013}. However, for general time series forecasting, the history is much more limited, and only goes back about 50 years. In fact, it wasn't until computers were widely available that it became feasible for forecasting competitions to be held at all.
 
 Time series forecasting competitions have been a feature of the \emph{International Journal of Forecasting} and the \emph{Journal of Forecasting} since the journals were founded in the early 1980s. This strong emphasis on large scale empirical evaluations of forecasting methods, and the need to compare newly proposed methods against existing state-of-the-art methods, has played a large part in pushing researchers to develop new methods that can be shown to work in practice.
 
-\hypertarget{early-controversy}{%
-\section{Early controversy}\label{early-controversy}}
+Young researchers in forecasting are often surprised to learn how controversial such competitions were when they were first conducted about 50 years ago. I review this controversy in Section \ref{sec:controversy}, ??????
 
-Young researchers in forecasting are often surprised to learn how controversial such competitions were when they were first conducted about 50 years ago.
+\hypertarget{sec:controversy}{%
+\section{Early controversy}\label{sec:controversy}}
+
+The earliest forecasting competitions were between methods rather than people. It was not feasible, given the communication tools available at the time, to conduct a large-scale forecasting competition involving many entrants spread around the world. So the first few competitions were by individual researchers comparing the accuracy of methods applied to multiple time series.
 
 \hypertarget{nottingham-studies}{%
 \subsection*{Nottingham studies}\label{nottingham-studies}}
@@ -320,7 +323,7 @@ There was also a strong bias against automatic forecasting procedures. For examp
 ``The fact remains that model building is best done by the human brain and is inevitably an iterative process.''
 \end{quote}
 
-Subsequent history has shown that to be untrue provided enough data is available.
+Perhaps Jenkins was reflecting the widely-held view that the type of intuitive thinking involved in model building cannot be represented by an algorithm or mathematical model. Subsequent history has shown that to be untrue provided enough data is available, and the model is flexible enough to capture the variation seen in real data.
 
 \hypertarget{makridakis-hibon-1979}{%
 \subsection*{Makridakis \& Hibon (1979)}\label{makridakis-hibon-1979}}
@@ -366,7 +369,7 @@ Again, Makridakis \& Hibon responded:
 \subsection*{M-competition}\label{m-competition}}
 \addcontentsline{toc}{subsection}{M-competition}
 
-In response to the hostility and charge of incompetence, Makridakis \& Hibon followed up with a new competition involving 1001 series. This time, anyone could submit forecasts, making this the first true forecasting competition as far as I am aware. They also used multiple forecast measures to determine the most accurate method.
+In response to the hostility and charge of incompetence, Makridakis \& Hibon followed up with a new competition involving 1001 series. This time anyone could submit forecasts, making this the first true forecasting competition (between multiple people) as far as I am aware. They also used multiple forecast measures to determine the most accurate method.
 
 The 1001 time series were taken from demography, industry and economics, and ranged in length between 9 and 132 observations. All the data were either non-seasonal (e.g., annual), quarterly or monthly. Curiously, all the data were positive, which made it possibly to compute mean absolute percentage errors, but was not really reflective of the population of real data.
 
@@ -433,6 +436,13 @@ This supports the general consensus in forecasting, that neural networks (and ot
 
 There were some follow-up competitions\footnote{\url{http://www.neural-forecasting-competition.com/}}, but as far as I know none of the results have ever been published.
 
+\hypertarget{sante-fe-competitions}{%
+\subsection{Sante Fe competitions}\label{sante-fe-competitions}}
+
+There was the Santa Fe based competitions too which were all about nonlinear models and time series.
+
+\url{https://www.semanticscholar.org/paper/The-Future-of-Time-Series-Gershenfeld-Weigend/1d49bdde1d2a18c6a3c1f2fca8ee0fb083cc9233}
+
 \hypertarget{kaggle-time-series-competitions}{%
 \subsection*{Kaggle time series competitions}\label{kaggle-time-series-competitions}}
 \addcontentsline{toc}{subsection}{Kaggle time series competitions}
@@ -463,6 +473,34 @@ Makridakis is now at it again with the \href{https://www.m4.unic.ac.cy/}{M4 comp
 \item
   There is a strong emphasis on reproducibility (a problem with earlier competitions), and competitors will be required to post their code on Github.
 \end{itemize}
+
+\hypertarget{kdd-cup}{%
+\subsection{KDD cup}\label{kdd-cup}}
+
+The data mining community have the annual \href{http://kdd.org/kdd-cup}{KDD cup} which has generated attention on a wide range of prediction~problems and associated methods. Recent~KDD cups are \href{https://www.kaggle.com/c/kdd-cup-2014-predicting-excitement-at-donors-choose}{hosted on kaggle}.
+
+I'd like to draw your attention to KDD Cup 2018 as well. Since 1997, KDD Cup has been a prestigious annual data mining competition organized by ACM SIGKDD.
+
+KDD Cup 2018 is a timeseries competition, where participants are asked to predict air pollution levels over the coming 48 hours for two cities, Beijing, China, and London, UK.
+
+Unlike previous timeseries competitions, we provide the real time data API, and during the test phase (5/2018), everyday participants need to pull new data, generate 48 hour forecast, and submit it for evaluation.
+
+We hope that this setup addresses some of major critics/problems on previous competitions such as:
+* Winning solutions that are too complex: Since teams need to train their models everyday with new data, it cannot be too complex.
+* Data leakage for the test data: Since the test data set is strictly from the future, there cannot be leakage.
+* Metrics that are not aligned with real world use cases: The setup mimics the forecasting pipeline in practice (not one time forecasting, but continuous forecasting over time with new data).
+
+Please check out the KDD Cup 2018 website for more information: \url{https://biendata.com/compet}\ldots{}
+\url{https://www.kdd.org/kdd2018/kdd-cup}
+\url{https://biendata.com/competition/kdd_2018}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \href{http://www.kdd.org/kddcup2013/sites/default/files/papers/papers.pdf}{Roy et al (2013).~The Microsoft Academic Search Dataset and~KDD Cup 2013}.
+\end{enumerate}
 
 \hypertarget{future-competitions}{%
 \section{Future competitions?}\label{future-competitions}}
@@ -497,16 +535,13 @@ The data from many of these competitions are available as R packages.
 
 A useful discussion of forecasting competitions and their history is provided by \href{https://doi.org/10.1002/9780470996430.ch15}{Fildes, R., \& Ord, K. (2002). Forecasting competitions: their role in improving forecasting practice and research. In M. Clements \& D. Hendry (Eds.), \emph{A companion to economic forecasting} (pp.~322--353). Oxford, Blackwell.}
 
-The data mining community have the annual \href{http://kdd.org/kdd-cup}{KDD cup} which has generated attention on a wide range of prediction~problems and associated methods. Recent~KDD cups are \href{https://www.kaggle.com/c/kdd-cup-2014-predicting-excitement-at-donors-choose}{hosted on kaggle}.
-
 In my research group meeting today, we discussed our (limited) experiences in competing in some \href{https://www.kaggle.com/competitions}{Kaggle competitions}, and we reviewed the following two papers which describe two prediction competitions:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   \href{http://dx.doi.org/10.1016/j.ijforecast.2011.03.002}{Athanasopoulos and Hyndman~(IJF 2011). The value of feedback in forecasting competitions}. {[}\href{/papers/kaggle.pdf}{preprint version}{]}
-\item
-  \href{http://www.kdd.org/kddcup2013/sites/default/files/papers/papers.pdf}{Roy et al (2013).~The Microsoft Academic Search Dataset and~KDD Cup 2013}.
 \end{enumerate}
 
 \begin{quote}

@@ -33,17 +33,20 @@ library(tidyverse)
 
 \footnotetext[1]{An early version of this article appeared as a blog post at \url{https://robjhyndman.com/hyndsight/forecasting-competitions/}.}
 
-Prediction competitions go back millenia, with rival Greek diviners competing to predict the future more accurately [@Raphals2013, p124]. However, for general time series forecasting, the history is much more limited, and only goes back about 50 years.
+Prediction competitions go back millenia, with rival Greek diviners competing to predict the future more accurately [@Raphals2013, p124]. However, for general time series forecasting, the history is much more limited, and only goes back about 50 years. In fact, it wasn't until computers were widely available that it became feasible for forecasting competitions to be held at all.
 
 Time series forecasting competitions have been a feature of the *International Journal of Forecasting* and the *Journal of Forecasting* since the journals were founded in the early 1980s. This strong emphasis on large scale empirical evaluations of forecasting methods, and the need to compare newly proposed methods against existing state-of-the-art methods, has played a large part in pushing researchers to develop new methods that can be shown to work in practice.
 
-# Early controversy
+Young researchers in forecasting are often surprised to learn how controversial such competitions were when they were first conducted about 50 years ago. I review this controversy in Section \ref{sec:controversy}, ??????
 
-Young researchers in forecasting are often surprised to learn how controversial such competitions were when they were first conducted about 50 years ago.
+
+# Early controversy {#sec:controversy}
+
+The earliest forecasting competitions were between methods rather than people. It was not feasible, given the communication tools available at the time, to conduct a large-scale forecasting competition involving many entrants spread around the world. So the first few competitions were by individual researchers comparing the accuracy of methods applied to multiple time series.
 
 ## Nottingham studies {-}
 
-The earliest non-trivial study of time series forecast accuracy was probably by David Reid as part of his PhD at the University of Nottingham [@reidphd]. Building on his work, Paul Newbold and Clive Granger conducted a study of forecast accuracy involving 106 time series [@NewboldGranger74]. Although they did not invite others to participate, they did start the discussion on what forecasting methods are the most accurate for different types of time series. They presented the ideas to the Royal Statistical Society, and the subsequent discussion  reveals some of the erroneous thinking of the time.
+The earliest non-trivial study of time series forecast accuracy was probably by David Reid as part of his PhD at the University of Nottingham [@reidphd]. Building on his work, Paul Newbold and Clive Granger conducted a study of forecast accuracy involving 106 time series [@NewboldGranger74]. Although they did not invite others to participate, they did start the discussion on what forecasting methods are the most accurate for different types of time series. They presented the ideas to the Royal Statistical Society, and the subsequent discussion reveals some of the erroneous thinking of the time.
 
 One important feature of the results was the empirical demonstration that forecast combinations improve accuracy. A similar result had been demonstrated as far back as Francis Galton in 1907 [@Wallis2014], yet one discussant (GJA Stern) stated
 
@@ -59,11 +62,11 @@ There was also a strong bias against automatic forecasting procedures. For examp
 
 > "The fact remains that model building is best done by the human brain and is inevitably an iterative process."
 
-Subsequent history has shown that to be untrue provided enough data is available.
+Perhaps Jenkins was reflecting the widely-held view that the type of intuitive thinking involved in model building cannot be represented by an algorithm or mathematical model.  Subsequent history has shown that to be untrue provided enough data is available, and the model is flexible enough to capture the variation seen in real data.
 
 ## Makridakis & Hibon (1979) {-}
 
-Five years later, Spyros Makridakis and Michèle Hibon put together a collection of 111 time series and compared many more forecasting methods. They also presented the results to the Royal Statistical Society.  The resulting paper [@Makridakis1979] seems to have caused quite a stir, and the discussion published along with the paper is entertaining, and at times somewhat shocking.
+Five years later, Spyros Makridakis and Michèle Hibon put together a collection of 111 time series and compared many more forecasting methods. They also presented the results to the Royal Statistical Society. The resulting paper [@Makridakis1979] seems to have caused quite a stir, and the discussion published along with the paper is entertaining, and at times somewhat shocking.
 
 Maurice Priestley was in attendance again and was clinging to the view that there was a true model waiting to be discovered:
 
@@ -89,7 +92,7 @@ Again, Makridakis & Hibon responded:
 
 ## M-competition {-}
 
-In response to the hostility and charge of incompetence, Makridakis & Hibon followed up with a new competition involving 1001 series. This time, anyone could submit forecasts, making this the first true forecasting competition as far as I am aware. They also used multiple forecast measures to determine the most accurate method.
+In response to the hostility and charge of incompetence, Makridakis & Hibon followed up with a new competition involving 1001 series. This time anyone could submit forecasts, making this the first true forecasting competition (between multiple people) as far as I am aware. They also used multiple forecast measures to determine the most accurate method.
 
 The 1001 time series were taken from demography, industry and economics, and ranged in length between 9 and 132 observations. All the data were either non-seasonal (e.g., annual), quarterly or monthly. Curiously, all the data were positive, which made it possibly to compute mean absolute percentage errors, but was not really reflective of the population of real data.
 
