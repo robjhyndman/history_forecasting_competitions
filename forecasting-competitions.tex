@@ -323,7 +323,10 @@ There was also a strong bias against automatic forecasting procedures. For examp
 ``The fact remains that model building is best done by the human brain and is inevitably an iterative process.''
 \end{quote}
 
-Perhaps Jenkins was reflecting the widely-held view that the type of intuitive thinking involved in model building cannot be represented by an algorithm or mathematical model. Subsequent history has shown that to be untrue provided enough data is available, and the model is flexible enough to capture the variation seen in real data.
+Perhaps Jenkins was reflecting the widely-held view that the type of intuitive thinking and extensive experience typically involved in model building cannot be represented by an algorithm or mathematical model. Subsequent history has shown that to be untrue provided enough data is available, and the model is flexible enough to capture the variation seen in real data.
+
+\hypertarget{the-makridakis-competitions}{%
+\section{The Makridakis competitions}\label{the-makridakis-competitions}}
 
 \hypertarget{makridakis-hibon-1979}{%
 \subsection*{Makridakis \& Hibon (1979)}\label{makridakis-hibon-1979}}
@@ -371,7 +374,7 @@ Again, Makridakis \& Hibon responded:
 
 In response to the hostility and charge of incompetence, Makridakis \& Hibon followed up with a new competition involving 1001 series. This time anyone could submit forecasts, making this the first true forecasting competition (between multiple people) as far as I am aware. They also used multiple forecast measures to determine the most accurate method.
 
-The 1001 time series were taken from demography, industry and economics, and ranged in length between 9 and 132 observations. All the data were either non-seasonal (e.g., annual), quarterly or monthly. Curiously, all the data were positive, which made it possibly to compute mean absolute percentage errors, but was not really reflective of the population of real data.
+The 1001 time series were taken from demography, industry and economics, and ranged in length between 9 and 132 observations. All the data were either non-seasonal (e.g., annual), quarterly or monthly. Curiously, all the data were positive, which made it possible to compute mean absolute percentage errors, but was not really reflective of the population of real data.
 
 The results of their 1979 paper were largely confirmed. The four main findings \autocite[taken from][]{M3} were:
 
@@ -388,7 +391,7 @@ The results of their 1979 paper were largely confirmed. The four main findings \
   The accuracy of the various methods depends upon the length of the forecasting horizon involved.
 \end{enumerate}
 
-Remarkably, the best performing method overall used a classical multiplicative decomposition \autocite{fpp2}, with simple exponential smoothing used to forecast the seasonally adjusted data, and a seasonal naive method used to forecast the seasonal component. The two forecasts were then combined.
+Remarkably, the best performing method overall was DSES, which used a classical multiplicative decomposition \autocite{fpp2} with simple exponential smoothing used to forecast the seasonally adjusted data, and a seasonal naive method used to forecast the seasonal component. The two forecasts were then combined. This extremely simple, and somewhat ad hoc approach, out-performed the best that experienced academic researchers could produce.
 
 The paper describing the competition \autocite{M1} had a profound effect on forecasting research. It caused researchers to:
 
@@ -418,13 +421,66 @@ In 1998, Makridakis \& Hibon ran their third competition (the second was not str
 
 It is brave of any academic to claim that their work is ``a final attempt''!
 
-This competition involved 3003 time series, all taken from business, demography, finance and economics, and ranging in length between 14 and 126 observations. Again, the data were all either non-seasonal (e.g., annual), quarterly or monthly, and all were positive.
+This competition involved 3003 time series, all taken from business, demography, finance and economics, and ranging in length between 14 and 126 observations. Again, the data were all either non-seasonal (e.g., annual), quarterly or monthly, and all were positive. Twenty-four entries were received (some from the organizers). Surprisingly, the DSES method which did so well in the first M-competition was not included.
 
-In the published results, \autocite{M3} claimed that the M3 competition supported the findings of their earlier work. Yet the best two methods were not obviously ``simple''.
+In the published results, \autocite{M3} claimed that the M3 competition upheld the findings of their earlier work, yet the results did not provide the evidence supporting the first finding (that simple methods outperform more complicated methods). The best two methods were not obviously ``simple'', and the Box-Jenkins' ARIMA models did much better than in the previous competitions.
 
-One was the ``Theta'' method which was described in a highly complicated and confusing manner. Later, \textcite{HB03} showed that the Theta method was equivalent to an average of a linear regression and simple exponential smoothing with drift, so it turned out to be relatively simple after all. But Makridakis \& Hibon could not have known that in 2000.
+One of the top performing entries was the ``Theta'' method which was described in a highly complicated and confusing manner. Later, \textcite{HB03} showed that the Theta method was equivalent to an average of a linear regression and simple exponential smoothing with drift, so it turned out to be relatively simple after all. But Makridakis \& Hibon could not have known that in 2000.
 
 The other method that performed extremely well in the M3 competition was the commercial software package ForecastPro. The algorithm used is not public, but enough information has been revealed that we can be sure it is not simple. The algorithm selects between an exponential smoothing and ARIMA model based on some state space approximations and a BIC calculation \autocite{Goodrich2000}.
+
+The ForecastPro team also submitted an entry using an automatic algorithm to select an ARIMA model, and it did much better than in any previous competitions, and better than the Holt-Winters' method. It seems that tendency to over-fit ARIMA models had been addressed in the 20 years since the first competition (ForecastPro uses the BIC to penalize over-parametrized models).
+
+Even after more than 20 years of forecasting competitions, the M3 competition was still generating controversy.
+
+\hypertarget{other-competitions}{%
+\section{Other competitions}\label{other-competitions}}
+
+\hypertarget{sante-fe-competitions}{%
+\subsection*{Sante Fe competitions}\label{sante-fe-competitions}}
+\addcontentsline{toc}{subsection}{Sante Fe competitions}
+
+Parallel to the series of Makridakis competitions\ldots{}
+
+There was the Santa Fe based competitions too which were all about nonlinear models and time series.
+
+\url{https://www.semanticscholar.org/paper/The-Future-of-Time-Series-Gershenfeld-Weigend/1d49bdde1d2a18c6a3c1f2fca8ee0fb083cc9233}
+
+\hypertarget{kdd-cup}{%
+\subsection*{KDD cup}\label{kdd-cup}}
+\addcontentsline{toc}{subsection}{KDD cup}
+
+The data mining community have the annual \href{http://kdd.org/kdd-cup}{KDD cup} which has generated attention on a wide range of prediction~problems and associated methods. Recent~KDD cups are \href{https://www.kaggle.com/c/kdd-cup-2014-predicting-excitement-at-donors-choose}{hosted on kaggle}.
+
+I'd like to draw your attention to KDD Cup 2018 as well. Since 1997, KDD Cup has been a prestigious annual data mining competition organized by ACM SIGKDD.
+
+KDD Cup 2018 is a timeseries competition, where participants are asked to predict air pollution levels over the coming 48 hours for two cities, Beijing, China, and London, UK.
+
+Unlike previous timeseries competitions, we provide the real time data API, and during the test phase (5/2018), everyday participants need to pull new data, generate 48 hour forecast, and submit it for evaluation.
+
+We hope that this setup addresses some of major critics/problems on previous competitions such as:
+
+\begin{itemize}
+\tightlist
+\item
+  Winning solutions that are too complex: Since teams need to train their models everyday with new data, it cannot be too complex.
+\item
+  Data leakage for the test data: Since the test data set is strictly from the future, there cannot be leakage.
+\item
+  Metrics that are not aligned with real world use cases: The setup mimics the forecasting pipeline in practice (not one time forecasting, but continuous forecasting over time with new data).
+\end{itemize}
+
+Please check out the KDD Cup 2018 website for more information: \url{https://biendata.com/compet}\ldots{}
+\url{https://www.kdd.org/kdd2018/kdd-cup}
+\url{https://biendata.com/competition/kdd_2018}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \href{http://www.kdd.org/kddcup2013/sites/default/files/papers/papers.pdf}{Roy et al (2013).~The Microsoft Academic Search Dataset and~KDD Cup 2013}.
+\end{enumerate}
 
 \hypertarget{neural-network-competitions}{%
 \subsection*{Neural network competitions}\label{neural-network-competitions}}
@@ -435,13 +491,6 @@ There was only one submission that used neural networks in the M3 competition, b
 This supports the general consensus in forecasting, that neural networks (and other highly non-linear and nonparametric methods) are not well suited to time series forecasting due to the relatively short nature of most time series. The longest series in this competition was only 126 observations long. That is simply not enough data to fit a good neural network model.
 
 There were some follow-up competitions\footnote{\url{http://www.neural-forecasting-competition.com/}}, but as far as I know none of the results have ever been published.
-
-\hypertarget{sante-fe-competitions}{%
-\subsection{Sante Fe competitions}\label{sante-fe-competitions}}
-
-There was the Santa Fe based competitions too which were all about nonlinear models and time series.
-
-\url{https://www.semanticscholar.org/paper/The-Future-of-Time-Series-Gershenfeld-Weigend/1d49bdde1d2a18c6a3c1f2fca8ee0fb083cc9233}
 
 \hypertarget{kaggle-time-series-competitions}{%
 \subsection*{Kaggle time series competitions}\label{kaggle-time-series-competitions}}
@@ -459,8 +508,7 @@ Few Kaggle competitions\footnote{\url{https://www.kaggle.com/competitions}} have
 One of the great benefits of the Kaggle platform (and others like it) is that it provides a leaderboard and allows multiple submissions. This has been found to lead to much better results as teams compete against each other over the duration of the competition. George Athanasopoulos and I discussed this important feature in a \href{/publications/kaggle/}{2011 IJF paper}.
 
 \hypertarget{m4-competition}{%
-\subsection*{M4-competition}\label{m4-competition}}
-\addcontentsline{toc}{subsection}{M4-competition}
+\section{M4-competition}\label{m4-competition}}
 
 Makridakis is now at it again with the \href{https://www.m4.unic.ac.cy/}{M4 competition}. This time there are 100,000 time series, and many more participants. New features of this competition are:
 
@@ -473,34 +521,6 @@ Makridakis is now at it again with the \href{https://www.m4.unic.ac.cy/}{M4 comp
 \item
   There is a strong emphasis on reproducibility (a problem with earlier competitions), and competitors will be required to post their code on Github.
 \end{itemize}
-
-\hypertarget{kdd-cup}{%
-\subsection{KDD cup}\label{kdd-cup}}
-
-The data mining community have the annual \href{http://kdd.org/kdd-cup}{KDD cup} which has generated attention on a wide range of prediction~problems and associated methods. Recent~KDD cups are \href{https://www.kaggle.com/c/kdd-cup-2014-predicting-excitement-at-donors-choose}{hosted on kaggle}.
-
-I'd like to draw your attention to KDD Cup 2018 as well. Since 1997, KDD Cup has been a prestigious annual data mining competition organized by ACM SIGKDD.
-
-KDD Cup 2018 is a timeseries competition, where participants are asked to predict air pollution levels over the coming 48 hours for two cities, Beijing, China, and London, UK.
-
-Unlike previous timeseries competitions, we provide the real time data API, and during the test phase (5/2018), everyday participants need to pull new data, generate 48 hour forecast, and submit it for evaluation.
-
-We hope that this setup addresses some of major critics/problems on previous competitions such as:
-* Winning solutions that are too complex: Since teams need to train their models everyday with new data, it cannot be too complex.
-* Data leakage for the test data: Since the test data set is strictly from the future, there cannot be leakage.
-* Metrics that are not aligned with real world use cases: The setup mimics the forecasting pipeline in practice (not one time forecasting, but continuous forecasting over time with new data).
-
-Please check out the KDD Cup 2018 website for more information: \url{https://biendata.com/compet}\ldots{}
-\url{https://www.kdd.org/kdd2018/kdd-cup}
-\url{https://biendata.com/competition/kdd_2018}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  \href{http://www.kdd.org/kddcup2013/sites/default/files/papers/papers.pdf}{Roy et al (2013).~The Microsoft Academic Search Dataset and~KDD Cup 2013}.
-\end{enumerate}
 
 \hypertarget{future-competitions}{%
 \section{Future competitions?}\label{future-competitions}}
