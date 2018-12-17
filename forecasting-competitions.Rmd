@@ -33,7 +33,7 @@ library(tidyverse)
 
 \footnotetext[1]{An early version of this article appeared as a blog post at \url{https://robjhyndman.com/hyndsight/forecasting-competitions/}.}
 
-Prediction competitions go back millenia, with rival Greek diviners competing to predict the future more accurately [@Raphals2013, p124]. However, for general time series forecasting, the history is much more limited, and only goes back about 50 years. In fact, it wasn't until computers were widely available that it became feasible for forecasting competitions to be held at all.
+Prediction competitions go back millenia; for example, rival diviners in ancient Greece competed to predict the future more accurately [@Raphals2013, p124]. However, for general time series forecasting, the history is much more limited, and only goes back about 50 years. In fact, it wasn't until computers were widely available that it became feasible for forecasting competitions to be held at all.
 
 Time series forecasting competitions have been a feature of the *International Journal of Forecasting* and the *Journal of Forecasting* since the journals were founded in the early 1980s. This strong emphasis on large scale empirical evaluations of forecasting methods, and the need to compare newly proposed methods against existing state-of-the-art methods, has played a large part in pushing researchers to develop new methods that can be shown to work in practice.
 
@@ -94,7 +94,7 @@ Again, Makridakis & Hibon responded:
 
 ## M-competition {-}
 
-In response to the hostility and charge of incompetence, Makridakis & Hibon followed up with a new competition involving 1001 series. This time anyone could submit forecasts, making this the first true forecasting competition (between multiple people) as far as I am aware. They also used multiple forecast measures to determine the most accurate method.
+In response to the hostility and charge of incompetence, Makridakis & Hibon followed up with a new competition involving 1001 series. This time anyone could submit forecasts, making this the first true forecasting competition (where multiple people could submit entries) as far as I am aware. They also used multiple forecast measures to determine the most accurate method.
 
 The 1001 time series were taken from demography, industry and economics, and ranged in length between 9 and 132 observations. All the data were either non-seasonal (e.g., annual), quarterly or monthly. Curiously, all the data were positive, which made it possible to compute mean absolute percentage errors, but was not really reflective of the population of real data.
 
@@ -134,24 +134,29 @@ The other method that performed extremely well in the M3 competition was the com
 
 The ForecastPro team also submitted an entry using an automatic algorithm to select an ARIMA model, and it did much better than in any previous competitions, and better than the Holt-Winters' method. It seems that tendency to over-fit ARIMA models had been addressed in the 20 years since the first competition (ForecastPro uses the BIC to penalize over-parametrized models).
 
-Even after more than 20 years of forecasting competitions, the M3 competition was still generating controversy.
+Even after more than 20 years of forecasting competitions, the M3 competition was still generating controversy. One issue was around the statistical significance of the results [@Stekler01], and even whether it made sense to do inference on the results when there is no well-defined population of possible time series. The M3 data constitute a convenience sample, and even if it can be established that method A produces statistically significantly better forecasts than method B, it is not clear what population of time series that conclusion applies to.
 
+A second area of concern concerned the potential to cheat. In particular, there was partial revelation of the nature of the test sets part way through the competition [@Goodrich2001]. This allowed competitors to adjust their methods on the basis of the test set. While allowing a sequence of entrants with feedback on performance is now a standard and valuable feature of many prediction competitions [@AH11], it must be done carefully to avoid tailoring methods to fit the test set.
+
+Finally, there were many calls for extensions to the competition including
+
+ * evaluating prediction intervals [@Goodrich2001];
+ * including higher frequency data such as weekly and daily data [@Goodrich2001];
+ * evaluating multivariate forecasting models [@Granger2001];
+ * evaluating the reasons behind the differences between methods [@Hyndman2001], and identifying the circumstances where substantial improvements are achievable [@Fildes2001].
 
 # Other competitions
 
 ## Sante Fe competitions {-}
 
-Parallel to the series of Makridakis competitions...
-
-There was the Santa Fe based competitions too which were all about nonlinear models and time series.
-
-https://www.semanticscholar.org/paper/The-Future-of-Time-Series-Gershenfeld-Weigend/1d49bdde1d2a18c6a3c1f2fca8ee0fb083cc9233
+Parallel to the series of Makridakis competitions, scientists in mathematics and physics were also interested in forecasting, and ran their own competition at the Santa Fe Institute, with entries closing in January 1992 [@WG1993]. Only six time series were included, but these were much longer than those discussed above, ranging in length from 1000 observations to 34000 observations. Three of the series were from the physical or medical sciences, one was musical, and one was numerically simulated. Only one series (currency exchange data) was from the same domains as those used in other competitions. The choice of series led to a much greater focus on computationally intensive nonlinear algorithms. But with such a small sample, no general conclusions were possible.
 
 ## KDD cup {-}
 
-The data mining community have the annual [KDD cup](http://kdd.org/kdd-cup) which has generated attention on a wide range of prediction problems and associated methods. Recent KDD cups are [hosted on kaggle](https://www.kaggle.com/c/kdd-cup-2014-predicting-excitement-at-donors-choose).
+From 1997, the data mining community have held an annual data mining competition known as the KDD cup^[http://kdd.org/kdd-cup] organized by ACM SIGKDD.
 
-I'd like to draw your attention to KDD Cup 2018 as well. Since 1997, KDD Cup has been a prestigious annual data mining competition organized by ACM SIGKDD.
+which has generated attention on a wide range of prediction problems and associated methods. Recent KDD cups are [hosted on kaggle](https://www.kaggle.com/c/kdd-cup-2014-predicting-excitement-at-donors-choose).
+
 
 KDD Cup 2018 is a timeseries competition, where participants are asked to predict air pollution levels over the coming 48 hours for two cities, Beijing, China, and London, UK.
 
