@@ -110,7 +110,7 @@
   {\thesubsection}
   {0.4em}{}
 \titlespacing{\section}{0pt}{*5}{*1}
-\titlespacing{\section}{0pt}{*2}{*0.2}
+\titlespacing{\subsection}{0pt}{*2}{*0.2}
 
 
 %% TITLE PAGE
@@ -462,62 +462,41 @@ Parallel to the series of Makridakis competitions, scientists in mathematics and
 \subsection*{KDD cup}\label{kdd-cup}}
 \addcontentsline{toc}{subsection}{KDD cup}
 
-From 1997, the data mining community have held an annual data mining competition known as the KDD cup\footnote{\url{http://kdd.org/kdd-cup}} organized by ACM SIGKDD.
-
-which has generated attention on a wide range of prediction~problems and associated methods. Recent~KDD cups are \href{https://www.kaggle.com/c/kdd-cup-2014-predicting-excitement-at-donors-choose}{hosted on kaggle}.
-
-KDD Cup 2018 is a timeseries competition, where participants are asked to predict air pollution levels over the coming 48 hours for two cities, Beijing, China, and London, UK.
-
-Unlike previous timeseries competitions, we provide the real time data API, and during the test phase (5/2018), everyday participants need to pull new data, generate 48 hour forecast, and submit it for evaluation.
-
-We hope that this setup addresses some of major critics/problems on previous competitions such as:
-
-\begin{itemize}
-\tightlist
-\item
-  Winning solutions that are too complex: Since teams need to train their models everyday with new data, it cannot be too complex.
-\item
-  Data leakage for the test data: Since the test data set is strictly from the future, there cannot be leakage.
-\item
-  Metrics that are not aligned with real world use cases: The setup mimics the forecasting pipeline in practice (not one time forecasting, but continuous forecasting over time with new data).
-\end{itemize}
-
-Please check out the KDD Cup 2018 website for more information: \url{https://biendata.com/compet}\ldots{}
-\url{https://www.kdd.org/kdd2018/kdd-cup}
-\url{https://biendata.com/competition/kdd_2018}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  \href{http://www.kdd.org/kddcup2013/sites/default/files/papers/papers.pdf}{Roy et al (2013).~The Microsoft Academic Search Dataset and~KDD Cup 2013}.
-\end{enumerate}
+Since 1997, the data mining community have held an annual competition known as the KDD cup\footnote{\url{http://kdd.org/kdd-cup}} organized by the Association for Computing Machinery's Special Interest Group on Knowledge Discovery and Data Mining (ACM SIGKDD). It has generated attention on a wide range of prediction~problems and associated methods; occasionally the competition has involved time series forecasting. For example, KDD Cup 2018\footnote{\url{https://www.kdd.org/kdd2018/kdd-cup}} was a time series competition, where participants were asked to predict air pollution levels for two cities, Beijing, China, and London, UK. The competition ran for 31 days, and forecasts were to be made on each day, for the following 48 hours.
 
 \hypertarget{neural-network-competitions}{%
 \subsection*{Neural network competitions}\label{neural-network-competitions}}
 \addcontentsline{toc}{subsection}{Neural network competitions}
 
-There was only one submission that used neural networks in the M3 competition, but it did relatively poorly. To encourage additional submissions, Sven Crone organized a subsequent competition (the NN3\footnote{\url{http://www.neural-forecasting-competition.com/NN3}}) was organized in 2006 involving 111 of the monthly M3 series. Over 60 algorithms were submitted, although none outperformed the original M3 contestants. The paper describing the competition results \autocite{NN3} was not published until 2011.
+There was only one submission that used neural networks in the M3 competition, but it did relatively poorly. To encourage additional submissions, Sven Crone organized a subsequent competition (the NN3\footnote{\url{http://www.neural-forecasting-competition.com/NN3}}) in 2006 involving 111 of the monthly M3 series. Over 60 algorithms were submitted, although none outperformed the original M3 contestants. The paper describing the competition results \autocite{NN3} was not published until 2011.
 
 This supports the general consensus in forecasting, that neural networks (and other highly non-linear and nonparametric methods) are not well suited to time series forecasting due to the relatively short nature of most time series. The longest series in this competition was only 126 observations long. That is simply not enough data to fit a good neural network model.
 
-There were some follow-up competitions\footnote{\url{http://www.neural-forecasting-competition.com/}}, but as far as I know none of the results have ever been published.
+There were some follow-up competitions\footnote{\url{http://www.neural-forecasting-competition.com/}}, but none of the results have ever been published.
 
 \hypertarget{kaggle-time-series-competitions}{%
 \subsection*{Kaggle time series competitions}\label{kaggle-time-series-competitions}}
 \addcontentsline{toc}{subsection}{Kaggle time series competitions}
 
-Few Kaggle competitions\footnote{\url{https://www.kaggle.com/competitions}} have involved time series forecasting; mostly they are about cross-sectional prediction or classification. However, there have been some notable exceptions.
+Kaggle was the first online platform dedicated to prediction competitions, established in 2010 by Australian economist, Anthony Goldbloom. Most Kaggle competitions have involved cross-sectional prediction or classification, although a few have involved time series forecasting.
+
+One of the earliest Kaggle competitions was on tourism forecasting, organized by George Athanasopoulos and me. It involved forecasting 793 monthly, quarterly and annual time series, all associated with tourism. The best methods were described in papers published by the \emph{International Journal of Forecasting} \autocite{AHSW11}. Part of the competition (not open to outside competitors) explored the advantage of using explanatory variables (such as CPI and prices) over purely time series models. Surprisingly (to the authors), the purely time series forecasts were better than the models that used explanatory variables, even ex post (with perfect knowledge of the future explanatory variables).
+
+Recently, Oren Anava and Vitaly Kuznetsov organized a Web traffic\footnote{\url{https://www.kaggle.com/c/web-traffic-time-series-forecasting}} competition. Here the task was to forecast future web traffic for approximately 145,000 Wikipedia articles. The winning method used a recurrent neural network, trained on the entire data set, with autoregressive predictors, along with some meta-data features such as country and agent used, along with time series features such as autocorrelations. The reason why this worked, whereas neural networks failed in the M3 and NN3 competitions, was the fact that the data was relatively homogeneous, and the network could be trained across all series. In both the M3 and NN3 competitions, different networks were used for each of the relatively short time series.
+
+One of the great benefits of the Kaggle platform (and others like it) is that it provides a leaderboard and allows multiple submissions. This has been found to lead to much better results as teams compete against each other over the duration of the competition \autocite{AH11}.
+
+\hypertarget{global-energy-forecasting-competitions}{%
+\subsection{Global Energy Forecasting Competitions}\label{global-energy-forecasting-competitions}}
+
+The GEFCom series of competitions were organized by Tao Hong.
+This was done, for example, in the \href{http://www.drhongtao.com/gefcom/2014}{GEFCom2014} and \href{http://www.drhongtao.com/gefcom/2017}{GEFCom2017} competitions for energy demand forecasting.
 
 \begin{itemize}
+\tightlist
 \item
-  George Athanasopoulos and I organized a \href{https://www.kaggle.com/c/tourism1}{Tourism forecasting} competition in 2010. There was a follow-up \href{https://www.kaggle.com/c/tourism2}{part 2} later in the same year. The best methods were described in \href{https://www.sciencedirect.com/journal/international-journal-of-forecasting/vol/27/issue/3}{papers published by the IJF} in 2011.
-\item
-  Recently, Oren Anava and Vitaly Kuznetsov organized a \href{https://www.kaggle.com/c/web-traffic-time-series-forecasting}{Web traffic} competition. Here the task was to forecast future web traffic for approximately 145,000 Wikipedia articles. A paper describing the best methods is currently in progress.
+  The best competitions are focused on specific domains and problems. For example, the \href{http://www.gefcom.org}{GEFcom 2014} competitions are about specific problems in energy forecasting.
 \end{itemize}
-
-One of the great benefits of the Kaggle platform (and others like it) is that it provides a leaderboard and allows multiple submissions. This has been found to lead to much better results as teams compete against each other over the duration of the competition. George Athanasopoulos and I discussed this important feature in a \href{/publications/kaggle/}{2011 IJF paper}.
 
 \hypertarget{m4-competition}{%
 \section{M4-competition}\label{m4-competition}}
@@ -539,7 +518,7 @@ Makridakis is now at it again with the \href{https://www.m4.unic.ac.cy/}{M4 comp
 
 The M4 competition is certainly not the end of time series competitions! There are many features of time series forecasting that have not been studied under competition conditions.
 
-No previous time series competition has explored forecast distribution accuracy (as distinct from point forecast accuracy). The M4 competition is the first to make a start in this diretion with prediction interval accuracy being measured, but it is much richer to measure the whole forecast distribution. This was done, for example, in the \href{http://www.drhongtao.com/gefcom/2014}{GEFCom2014} and \href{http://www.drhongtao.com/gefcom/2017}{GEFCom2017} competitions for energy demand forecasting.
+No previous time series competition has explored forecast distribution accuracy (as distinct from point forecast accuracy). The M4 competition is the first to make a start in this diretion with prediction interval accuracy being measured, but it is much richer to measure the whole forecast distribution.
 
 No competition has involved large-scale multivariate time series forecasting. While many of the time series in the competitions are probably related to each other, this information has not been provided. Again, the GEFCom competitions have been ground-breaking in this respect also, by requiring true multivariate forecasts to be provided for the energy demand in different regions of the US.
 
@@ -567,18 +546,8 @@ The data from many of these competitions are available as R packages.
 
 A useful discussion of forecasting competitions and their history is provided by \href{https://doi.org/10.1002/9780470996430.ch15}{Fildes, R., \& Ord, K. (2002). Forecasting competitions: their role in improving forecasting practice and research. In M. Clements \& D. Hendry (Eds.), \emph{A companion to economic forecasting} (pp.~322--353). Oxford, Blackwell.}
 
-In my research group meeting today, we discussed our (limited) experiences in competing in some \href{https://www.kaggle.com/competitions}{Kaggle competitions}, and we reviewed the following two papers which describe two prediction competitions:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \href{http://dx.doi.org/10.1016/j.ijforecast.2011.03.002}{Athanasopoulos and Hyndman~(IJF 2011). The value of feedback in forecasting competitions}. {[}\href{/papers/kaggle.pdf}{preprint version}{]}
-\end{enumerate}
-
-\begin{quote}
-Some points of discussion:
-\end{quote}
+\hypertarget{discussion}{%
+\subsection{Discussion}\label{discussion}}
 
 \begin{itemize}
 \item
@@ -589,8 +558,6 @@ Some points of discussion:
   The metric used in the competition is important, and this is sometimes not thought through carefully enough by competition organizers.
 \item
   There are several competition platforms available now including \href{http://kaggle.com}{Kaggle}, \href{http://crowdanalytix.com}{CrowdAnalytix}~and \href{http://tunedit.org/}{Tunedit}.
-\item
-  The best competitions are focused on specific domains and problems. For example, the \href{http://www.gefcom.org}{GEFcom 2014} competitions are about specific problems in energy forecasting.
 \item
   Competitions are great for advancing knowledge of what works, but they do not lead to data scientists being well paid as many people compete but few are rewarded.
 \item
