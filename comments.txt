@@ -1,0 +1,4 @@
+Ed Merkle on twitter: "Interesting read. Maybe also interesting to consider the IARPA ACE and HFC competitions, which include time series and some other types of forecasts (some stock prices, world events, etc)."
+
+https://www.iarpa.gov/index.php/research-programs/ace
+https://www.hybridforecasting.com/
