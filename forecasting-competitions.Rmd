@@ -31,15 +31,15 @@ knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE)
 library(tidyverse)
 ```
 
-Prediction competitions go back millennia; for example, rival diviners in ancient Greece competed to predict the future more accurately [@Raphals2013, p124]. However, for general time series forecasting, the history is much more limited, and only goes back about 50 years. In fact, it wasn't until computers were widely available that it became feasible for forecasting competitions to be held at all.
+Prediction competitions go back millennia; for example, rival diviners in ancient Greece competed to predict the future more accurately [@Raphals2013, p124]. However, for general time series forecasting (i.e., predicting the future of regularly observed data over time), the history is much more limited and only goes back about 50 years. In fact, it wasn't until computers were widely available that it became feasible for forecasting competitions to be held at all.
 
 Time series forecasting competitions have been a feature of the *International Journal of Forecasting* and the *Journal of Forecasting* since the journals were founded in the early 1980s. This strong emphasis on large scale empirical evaluations of forecasting methods, and the need to compare newly proposed methods against existing state-of-the-art methods, has played a large part in pushing researchers to develop new methods that can be shown to work in practice [@FildesOrd2002].
 
-Young researchers in forecasting are often surprised to learn how controversial such competitions were when they were first conducted about 50 years ago. I review this controversy in Section \ref{sec:controversy}. The influential series of Makridakis competitions are discussed in Section \ref{sec:makridakis}, and other forecasting competitions are described in Section \ref{sec:other}. Finally, I provide a few comments on the future of forecasting competitions, and research about forecasting competitions, in Section \ref{sec:future}
+Researchers new to forecasting are often surprised to learn how controversial such competitions were when they were first conducted about 50 years ago. I review this controversy in \autoref{sec:controversy}. The influential series of Makridakis competitions are discussed in \autoref{sec:makridakis}, and other forecasting competitions are described in \autoref{sec:other}. Finally, I provide a few comments on the future of forecasting competitions, and research about forecasting competitions, in \autoref{sec:future}. I do not aim to cover forecasting competitions that are not based around time series data.
 
 # Early controversy {#sec:controversy}
 
-The earliest forecasting competitions were between methods rather than people. It was not feasible, given the communication tools available at the time, to conduct a large-scale forecasting competition involving many entrants spread around the world. So the first few competitions were by individual researchers comparing the accuracy of several methods applied to multiple time series.
+The earliest forecasting competitions were between methods rather than people. It was not feasible, given the communication tools available at the time, to conduct a large-scale forecasting competition involving many entrants spread around the world. So the first few competitions were by individual researchers comparing the accuracy of several methods applied to multiple time series. I only include the first two of these. From 1980 onwards, my scope is restricted to competitions involving multiple entrants.
 
 ## Nottingham studies {-}
 
@@ -81,7 +81,7 @@ Many of the discussants seem to have been enamoured with ARIMA models.
 
 > "I find it hard to believe that Box-Jenkins, if properly applied, can actually be worse than so many of the simple methods." --- *Chris Chatfield*
 
-At times, the discussion degenerated to insults:
+At times, the discussion degenerated to questioning the competency of the authors:
 
 > "Why do empirical studies sometimes give different answers? It may depend on the selected sample of time series, but I suspect it is more likely to depend on the skill of the analyst ... these authors are more at home with simple procedures than with Box-Jenkins." --- *Chris Chatfield*
 
@@ -113,19 +113,23 @@ The paper describing the competition [@M1] had a profound effect on forecasting 
 
 These now seem like common-sense to forecasters, but they were revolutionary ideas in 1982. Even today, I often have to explain to other academics why forecasting is not just an application of time series analysis.
 
+## M2-competition {-}
+
+A few years later, a second competition was run [@M2] and used only 29 series, but with much richer contextual information, and run in real-time. Given the small sample size, and the use of additional information, few conclusions about time series forecasting methods could be drawn.
+
 ## M3-competition {-}
 
-In 1998, Makridakis & Hibon ran their third competition (the second was not strictly time series forecasting), intending to take account of new methods developed since their first competition nearly two decades earlier. They wrote
+In 1998, Makridakis & Hibon ran their third competition, intending to take account of new methods developed since their first competition nearly two decades earlier. They wrote
 
 > "The M3-Competition is a final attempt by the authors to settle the accuracy issue of various time series methods... The extension involves the inclusion of more methods/researchers (in particular in the areas of neural networks and expert systems) and more series."
 
 It is brave of any academic to claim that their work is "a final attempt"!
 
-This competition involved 3003 time series, all taken from business, demography, finance and economics, and ranging in length between 14 and 126 observations. Again, the data were all either non-seasonal (e.g., annual), quarterly or monthly, and all were positive. Twenty-four entries were received (some from the organizers). Surprisingly, the DSES method which did so well in the first M-competition was not included.
+This competition involved 3003 time series, all taken from business, demography, finance and economics, and ranging in length between 14 and 126 observations. Again, the data were all either non-seasonal (e.g., annual), quarterly or monthly, and all were positive. Twenty-four entries were received (some from the organizers).
 
 In the published results, @M3 claimed that the M3 competition upheld the findings of their earlier work, yet the results did not provide the evidence supporting the first finding (that simple methods outperform more complicated methods). The best two methods were not obviously "simple", and the Box-Jenkins' ARIMA models did much better than in the previous competitions.
 
-One of the top performing entries was the "Theta" method which was described by @theta00 in a highly complicated and confusing manner. Later, @HB03 showed that the Theta method was equivalent to an average of a linear regression and simple exponential smoothing with drift. So it turned out to be relatively simple after all, but Makridakis & Hibon could not have known that in 2000.
+The top performing entry was the "Theta" method which was described by @theta00 in a highly complicated and confusing manner. Later, @HB03 showed that the Theta method was equivalent to an average of a linear regression and simple exponential smoothing with drift. So it turned out to be relatively simple after all, but Makridakis & Hibon could not have known that in 2000.
 
 The other method that performed extremely well in the M3 competition was the commercial software package ForecastPro. The algorithm used is not public, but enough information has been revealed that we can be sure it is not simple. The algorithm selects between an exponential smoothing and ARIMA model based on some state space approximations and a BIC calculation [@Goodrich2000].
 
@@ -143,7 +147,7 @@ There were also many calls for extensions to the competition including
  * evaluating the reasons behind the differences between methods [@Hyndman2001], and
  * identifying the circumstances where substantial improvements are achievable [@Fildes2001].
 
-Finally, an issue that has arisen since the competition is the reproducibility of the results. Although the test data and the submitted forecasts are all publicly available, the computed accuracy scores do not match those in the published paper [@Hyndsightevidence].
+Finally, an issue that has arisen since the competition is the reproducibility of the results. Although the test data and the submitted forecasts are all publicly available, the computed accuracy scores do not match those in the published paper [@Hyndsightevidence]. This is part of a broader reproducibility problem in statistics [@Peng2011] and forecasting in particular [@evanschitzky2010replications;@boylan2015reproducibility].
 
 ## M4-competition {-}
 
@@ -170,25 +174,25 @@ Since 1997, the data mining community have held an annual competition known as t
 
 There was only one submission that used neural networks in the M3 competition, but it did relatively poorly. To encourage additional submissions, Sven Crone organized a subsequent competition (the NN3) in 2006 involving 111 of the monthly M3 series. Over 60 algorithms were submitted, although none outperformed the original M3 contestants. The paper describing the competition results [@NN3] was not published until 2011.
 
-This supports the consensus in forecasting, that neural networks (and other highly non-linear and nonparametric methods) are not well suited to time series forecasting due to the relatively short nature of most time series. The longest series in this competition was only 126 observations long. That is simply not enough data to fit a good neural network model.
+This supports the consensus in the forecasting community, that neural networks (and other highly non-linear and nonparametric methods) are not well suited to time series forecasting due to the relatively short nature of most time series. The longest series in this competition was only 126 observations long. That is simply not enough data to fit a good neural network model.
 
 There were some follow-up competitions^[http://www.neural-forecasting-competition.com/], including the NN5 and NNGC1 competitions, but none of the results have ever been published.
 
 ## Kaggle time series competitions {-}
 
-Kaggle was the first online platform dedicated to prediction competitions, established in 2010 by Australian economist, Anthony Goldbloom. Most Kaggle competitions have involved cross-sectional prediction or classification, although a few have involved time series forecasting.
+Kaggle was the first online platform dedicated to data mining competitions, established in 2010 by Australian economist, Anthony Goldbloom. Most Kaggle competitions have involved cross-sectional prediction or classification, although a few have involved time series forecasting.
 
 One of the earliest Kaggle competitions was on tourism forecasting, organized by George Athanasopoulos and me. It involved forecasting 793 monthly, quarterly and annual time series, all associated with tourism. The best methods were described in papers published by the *International Journal of Forecasting* [@AHSW11]. Part of the competition (not open to outside competitors) explored the advantage of using explanatory variables (such as CPI and prices) over purely time series models. Surprisingly, the purely time series forecasts were better than the models that used explanatory variables, even ex post (with perfect knowledge of the future explanatory variables). Most likely, this was due to the relationships between the response and predictor variables changing over time.
 
 In 2017, Oren Anava and Vitaly Kuznetsov organized a Web traffic^[https://www.kaggle.com/c/web-traffic-time-series-forecasting] competition on Kaggle. Here the task was to forecast future web traffic for approximately 145,000 Wikipedia articles. The winning method used a recurrent neural network, trained on the entire data set, with autoregressive predictors, along with some meta-data features such as country and agent used, along with time series features such as autocorrelations. It is interesting to consider why this worked, whereas neural networks failed in the M3 and NN3 competitions. One likely factor was that the data were relatively homogeneous, and the network could be trained across all series. In both the M3 and NN3 competitions, different networks were used for each of the relatively short time series.
 
-One of the great benefits of the Kaggle platform (and others like it) is that it provides a leaderboard and allows multiple submissions. This has been found to lead to much better results as teams compete against each other over the duration of the competition [@AH11]. Of course, the danger is that the forecasts will over-fit the test data, so several precautions are taken to limit that possibility. First, only a few submissions per day are allowed, making it difficult for teams to gain enough information to fit the test data too closely. Second, the accuracy statistics available to contestants during the competition is computed on a small subset of the actual test data, with the true accuracy computed on the whole test set only available after the competition is completed.
+One of the great benefits of the Kaggle platform (and others like it) is that it provides a leaderboard and allows multiple submissions. This has been found to lead to much better results as teams compete against each other over the duration of the competition [@AH11]. Of course, the danger is that the forecasts will over-fit the test data, so several precautions are taken to limit that possibility. First, only a few submissions per day are allowed, making it difficult for teams to gain enough information to fit the test data too closely. Second, the accuracy statistics available to contestants during the competition are computed on a small subset of the actual test data, with the final accuracy computed on the remaining part of the test set only available after the competition is completed.
 
 ## Global Energy Forecasting Competitions {-}
 
 The GEFCom series of competitions^[http://gefcom.org] were organized by Tao Hong in conjunction with the *International Journal of Forecasting*, and comprised three competitions, each involving several parts. They have been influential in focusing research attention on important issues in energy forecasting, and in providing benchmark methods and data on which to compare new methods. A feature of the competitions has been that winning entries must post complete code implementing their methods, and submit an article to the *International Journal of Forecasting* describing their approach.
 
-The 2012 competition [@gefcom2012] had three main aims:
+The 2012 competition [@gefcom2012] had five main aims:
 
   1. improve the forecasting practices of the utility industry;
   1. bring together state-of-the-art techniques for energy forecasting;
@@ -196,11 +200,11 @@ The 2012 competition [@gefcom2012] had three main aims:
   1. promote analytics in power and energy education;
   1. prepare the industry to overcome the forecasting challenges brought by the smart grid technologies and renewable integration needs.
 
-It comprised two tracks: hierarchical load and wind power, where contestants were asked to forecasts sections of missing data. So it was not truly forecasting, and it looked at point prediction accuracy only.
+It comprised two tracks: hierarchical load and wind power, where contestants were asked to forecast sections of missing data and (in the case of load) one week of future data. So for the most part it was not truly forecasting, and it looked at point prediction accuracy only.
 
 The 2014 competition [@gefcom2014] included four tracks: load forecasting, price forecasting, wind forecasting and solar forecasting, and was the first competition to require entrants to submit complete probability distributions rather than simply point forecasts. These were submitted in the form of 99 percentiles for each forecast period. The competition used a rolling forecast process, mimicking what happens in most real forecasting tasks, where forecasts needed to be made each week for 15 consecutive weeks. In total, 581 contestants participated from 61 countries. Probabilistic forecasts were assessed using quantile scoring.
 
-The 2017 competition involved hierarchical probabilistic forecasting of hourly electricity load for ISO New England, with zones and total load forecasts required. This time only the deciles for each forecast distribution were submitted, and again quantile scoring was used for evaluation. In total, there were 177 entrants. The resulting papers are yet to be published.
+The 2017 competition involved (1) hierarchical probabilistic forecasting of hourly electricity load for ISO New England, with zones and total load forecasts required; and (2) probabilistic load forecasting of 183 delivery point meters of a US utility. This time only the deciles for each forecast distribution were submitted, and again quantile scoring was used for evaluation. In total, there were 177 entrants. The resulting papers are yet to be published.
 
 # Some thoughts on the future {#sec:future}
 
@@ -211,6 +215,12 @@ Data and forecasts from the M3 competition are available in the *MComp* package 
 A nice side-effect of some competitions is that they create a benchmark data set with well-tested benchmark methods. This has worked well for the M3 data, for example, and for many years new time series forecasting algorithms can be easily tested against these published results. With the publication of the M4 data, there is now a useful and up-to-date set of benchmarks against which to test new forecasting methods. It could reasonably be argued that any research paper proposing a new general time series forecasting method should not be published unless it can be shown to perform at least as well as existing methods on at least some well-defined subset of the M4 data.
 
 However, over-study of a single benchmark data set means that methods will eventually over-fit the published test data. I suspect this has happened with the M3 data over the past 20 years, and it is likely to happen with the M4 data, despite its much larger size. Therefore, a wider range of benchmarks is desirable, and these need to be updated regularly. Consequently, there can never be a "final forecasting competition".
+
+One feature of the Makridakis competitions and the GEFCom competitions that has meant they have had a substantial impact on forecasting practice is their association with the *International Journal of Forecasting*. Competitions that have been subject to careful academic scrutiny, where the data and results have been the focus of subsequent research papers, have rightfully led to changes in forecasting practice and have set benchmarks for future forecasting methodological developments.
+
+In surveying the last 40 years of forecasting competitions, it is apparent that the objective for each competition was often unclear, perhaps even to the organizers. This has led, for example, to confusion over the domain to which the results apply --- if a method does well in one competition, what can be said about how well it will do on data from a specific company? It would be better if future competitions were clear about the domain to which they apply (by carefully defining the population of time series from which the sample is drawn).
+
+The frequent use of percentage errors also makes the results somewhat difficult to apply in general. It is known that minimizing absolute percentage errors tends to support severe underforecasts [@Gneiting2011]. It would be better if future competitions used objective criteria that are based on well-recognized attributes of the forecast distribution. For example, minimizing MASE [@HK06] leads to estimates of the median of the forecast distribution.
 
 There are many features of time series forecasting that have not been studied under competition conditions, and future competitions will surely seek to address these.
 
