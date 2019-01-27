@@ -9,7 +9,7 @@ abstract: "Forecasting competitions are now so widespread that it is often forgo
 keywords: "evaluation, forecasting accuracy, Kaggle, M competitions, neural networks, prediction intervals, probability scoring, time series"
 wpnumber: no/19
 jelcodes: C22,C45,C52,C53
-blind: true
+blind: false
 cover: false
 toc: false
 bibliography: references.bib
