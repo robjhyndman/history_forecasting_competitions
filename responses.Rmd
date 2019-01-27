@@ -29,7 +29,7 @@ Done
 
 > - Why not briefly touching on forecasting competitions other than time series? M2 should be briefly mentioned, I think. Also, I would add a small paragraph on the Tetlock-Superforecasters project in section 3.
 
-M2 is now briefly mentioned. To cover other forecasting competitions would make the paper too long and unfocussed.
+M2 is now briefly mentioned. To cover other forecasting competitions would make the paper too long and unfocussed. I've now made this restriction explicit in the third paragraph.
 
 # Reviewer 1 comments
 
@@ -83,7 +83,7 @@ Fixed
 
 > A general comment to Section 4: Maybe you can add a paragraph or a few sentences to comment on how to disseminate the competition results and findings. such as the importance of formal publications after the competitions. There were many other forecasting competitions in the past, but the ones that are really helpful to the research community are the ones organized with academic journals that can publish findings, data and insights afterwards.
 
-A paragraph along these lines has now been added.
+A paragraph along these lines has now been added to Section 4.
 
 # Referee 2 comments
 
@@ -92,7 +92,7 @@ competitions have been opaque.
 
 The objectives of the competitions are largely unstated, and probably confused. I have now added a paragraph about this.
 
-As to covering the criticisms of the M3 competition, it is not clear to me what the reviewer wants me to cover that is not already said. I spent about half a page on criticisms, and included the issues I thought were most important. What have I missed?
+As to covering the criticisms of the M3 competition, it is not clear to me what the reviewer wants me to cover that is not already said. I spent about half a page on criticisms, and included the issues that I thought were most important. What have I missed?
 
 > Many of the objections to the competitions related to a lack of a clear population from which the series are drawn. As I commented with Spyros in 1995,
 > > *This criticism is valid, but the emphasis is misplaced. “Many (if not all) field experiments suffer from the same limitation of using a non-random sample experimental base. It is overcome by the experimenter increasing the sample size and the diversity of the set (of selected time series) and by ensuring that the non-random components in the experiment are of little importance to the possible outcome. As Johnstone (1989) argues, the statistical testing of hypotheses is not dependent on randomness in the sample, only lack of systematic bias. Inexplicable findings should lead to a revised definition of the population under study and a revised view of the results expected.”*
@@ -117,7 +117,7 @@ Done
 
 > The final point of what I appreciate is a rather rambling review is that in the discussion of the response to the competitions the Fildes and Makridakis paper shows that the theoretical time series literature up to 1994 did not respond. I haven’t looked again at this issue apart from a superficial check now but I don’t think there’s any evidence of the finding being taken on board by for example time series statisticians.
 
-I do not understand this comment which seems wilfully ignorant of the work done in the last 25 years by me and others. I was a time series statistician before I was a forecaster. To take one example, I read the competition papers which claimed that ARIMA models did not forecast well, so I developed the `auto.arima` algorithm (Hyndman & Khandakar JSS 2008) which does forecast well. Surely that is a response by a time series statistician.
+I do not understand this comment which seems to overlook the work done in the last 25 years by me and others. I was a time series statistician before I was a forecaster. To take one example, I read the competition papers which claimed that ARIMA models did not forecast well, so I developed the `auto.arima` algorithm (Hyndman & Khandakar JSS 2008) which does forecast well. Surely that is a response by a time series statistician.
 
 Others have also responded including econometricians such as Diebold. The importance of good forecasting is also now well-recognized in the statistics and econometrics literature. While there are still large parts of the time series community who are obsessed about properties of models, and there continues to be a bias against forecasting papers in the top statistics and econometrics journals, it is not true to say there has been no response.
 
