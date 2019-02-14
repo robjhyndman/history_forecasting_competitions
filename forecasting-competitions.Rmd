@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = FALSE, cache=TRUE, messages=FALSE, warning=FALSE)
 library(tidyverse)
 ```
 
-Prediction competitions go back millennia; for example, rival diviners in ancient Greece competed to predict the future more accurately [@Raphals2013, p124]. However, for general time series forecasting (i.e., predicting the future of regularly observed data over time), the history is much more limited and only goes back about 50 years. In fact, it wasn't until computers were widely available that it became feasible for forecasting competitions to be held at all.
+Prediction competitions go back millennia; for example, rival diviners in ancient Greece competed to predict the future more accurately [@Raphals2013, p124]. However, for general time series forecasting (i.e., predicting the future of regularly observed data over time), the history is much more limited and goes back only about 50 years. In fact, it wasn't until computers were widely available that it became feasible for forecasting competitions to be held at all.
 
 Time series forecasting competitions have been a feature of the *International Journal of Forecasting* and the *Journal of Forecasting* since the journals were founded in the early 1980s. This strong emphasis on large scale empirical evaluations of forecasting methods, and the need to compare newly proposed methods against existing state-of-the-art methods, has played a large part in pushing researchers to develop new methods that can be shown to work in practice [@FildesOrd2002].
 
@@ -59,7 +59,7 @@ There was also a strong bias against automatic forecasting procedures. For examp
 
 > "The fact remains that model building is best done by the human brain and is inevitably an iterative process."
 
-Perhaps Jenkins was reflecting the widely held view that the type of intuitive thinking and extensive experience typically involved in model building cannot be represented by an algorithm or mathematical model. Subsequent history has shown that to be untrue provided enough data is available, and the model is flexible enough to capture the variation seen in real data.
+Perhaps Jenkins was reflecting the widely held view that the type of intuitive thinking and extensive experience typically involved in model building cannot be represented by an algorithm or mathematical model. Subsequent history has shown that to be untrue provided enough data are available, and the model is flexible enough to capture the variation seen in real data.
 
 # The Makridakis competitions {#sec:makridakis}
 
@@ -102,7 +102,7 @@ The results of their 1979 paper were largely confirmed. The four main findings [
   1. The accuracy of the combination of various methods outperforms, on average, the individual methods being combined, and does well in comparison with other methods
   1. The performance of the various methods depends on the length of the forecasting horizon.
 
-Remarkably, the best performing method overall was DSES, which used a classical multiplicative decomposition [@fpp2] with simple exponential smoothing used to forecast the seasonally adjusted data, and a seasonal naive method used to forecast the seasonal component. The two forecasts were then combined. This extremely simple, and somewhat ad hoc approach, out-performed the best that experienced academic researchers could produce.
+Remarkably, the best performing method overall was "DSES", which used a classical multiplicative decomposition [@fpp2] with simple exponential smoothing used to forecast the seasonally adjusted data, and a seasonal naive method used to forecast the seasonal component. The two forecasts were then combined. This extremely simple, and somewhat ad hoc approach, out-performed the best that experienced academic researchers could produce.
 
 The paper describing the competition [@M1] had a profound effect on forecasting research. It caused researchers to:
 
@@ -232,7 +232,7 @@ No competition has involved large-scale multivariate time series forecasting. Wh
 
 I know of no large-scale forecasting competition for finance data (e.g., stock prices or returns), yet this would seem to be of great potential interest.
 
-The frequency of the time series studied in competitions has changed from only annual, quarterly and monthly data in the competitions up to the M3 competition, to more frequent observations such as hourly, daily, and weekly in some subsequent competitions. As data is collected more frequently using automatic sensors and scanning devices, the need for higher frequency forecasts is also increasing. Higher frequency data also brings with it some new challenges including multiple seasonal patterns [@DHS11], irregularly spaced observations, and the need to generate forecasts rapidly.
+The frequency of the time series studied in competitions has changed from only annual, quarterly and monthly data in the competitions up to the M3 competition, to more frequent observations such as hourly, daily, and weekly in some subsequent competitions. As data are collected more frequently using automatic sensors and scanning devices, the need for higher frequency forecasts is also increasing. Higher frequency data also brings with it some new challenges including multiple seasonal patterns [@DHS11], irregularly spaced observations, and the need to generate forecasts rapidly.
 
 There has also been little focus on the conditions under which explanatory variables are useful when forecasting. The tourism forecasting competition included explanatory variables which proved to be unhelpful. The GEFCom competitions have all involved weather data as useful predictors for energy forecasting, but clearly these predictors also need forecasting, and over a long forecast horizon it may be better not to use them at all.
 
