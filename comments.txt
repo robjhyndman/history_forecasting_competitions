@@ -2,3 +2,31 @@ Ed Merkle on twitter: "Interesting read. Maybe also interesting to consider the 
 
 https://www.iarpa.gov/index.php/research-programs/ace
 https://www.hybridforecasting.com/
+
+
+Reviewers' Comments to Author:
+
+Reviewer: 1
+
+Comments to the Author
+This invited contribution to the M4 special issue reads well and is very clear. i have very few quibbles. I still believe it could be improved by responding somewhat to my suggestions on the first review but I will leave it to the AE (who undoubtedly will agree with at least one point) to decide.
+
+On p.9 there is a recommendation on using M4 as a test bed – papers should not be published unless they perform well …on at least some well define subset of M4. But on l.30-31 this is contradicted by the much more sensible suggestion that comparisons should be clear as to the domain to which they apply.
+
+P.4 I raised the question as have many others as to the issue of how representative the M3/ M4 data is of the population. Spiliotis et al explore this and in the end we are left with Hyndman’s conclusions that it is not clear what population of time series the M3 conclusions apply to (p.5, l.26). This relates to the point above and merits more thorough consideration.
+
+I suggested in the first round  there were missing competitions to which the author’s response was that the analysis was restricted to post-1980 competitions with multiple participants. OK – so why is that reasonable? Are there that many missing – not to my knowledge. The case can be made if the author had responded positively to the point about methodological innovations. I do not accept the point that a list would be hard to construct. M4’s strength is I think methodological primarily, e.g. publicly available code.
+
+Minor issues
+p.1, l.25: not 50 years. Yule is 90, Working 85. The econometricians go back to Cowles.
+p.1, l43 “I do not cover….”
+p.2 end para section 1. How do you explain Petropoulos, F., Kourentzes, N., Nikolopoulos, K., & Siemsen, E. (2018). Judgmental selection of forecasting models. Journal of Operations Management, 60, 34-46
+p.9 Minimizing MASE is equivalent to minimizing MAE, Note.
+p.4 Do we need to say (even if we agree) that the initial explanation of Theta was highly complicated and confusing?
+
+
+Reviewer: 2
+
+Comments to the Author
+The author have addressed my comments. I forgot to ask the author to cite the GEFCom2017 intro paper in the first round of review. The paper is currently in press with IJF, to be published in 2019.
+Tao Hong, Jingrui Xie, and Jonathan Black, "Global Energy Forecasting Competition 2017: Hierarchical Probabilistic Load Forecasting," International Journal of Forecasting, in press.
