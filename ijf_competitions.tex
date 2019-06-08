@@ -1,0 +1,578 @@
+\documentclass[11pt,a4paper,]{article}
+\usepackage{lmodern}
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
+\usepackage[unicode=true]{hyperref}
+\hypersetup{
+            pdftitle={A brief history of forecasting~competitions},
+            pdfkeywords={evaluation, forecasting accuracy, Kaggle, M competitions, neural networks, prediction intervals, probability scoring, time series},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\usepackage[style=authoryear-comp,]{biblatex}
+\addbibresource{references.bib}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{A brief history of forecasting~competitions}
+
+%% MONASH STUFF
+
+%% CAPTIONS
+\RequirePackage{caption}
+\DeclareCaptionStyle{italic}[justification=centering]
+ {labelfont={bf},textfont={it},labelsep=colon}
+\captionsetup[figure]{style=italic,format=hang,singlelinecheck=true}
+\captionsetup[table]{style=italic,format=hang,singlelinecheck=true}
+
+%% FONT
+\RequirePackage{bera}
+\RequirePackage{mathpazo}
+
+%% HEADERS AND FOOTERS
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\rfoot{\Large\sffamily\raisebox{-0.1cm}{\textbf{\thepage}}}
+\makeatletter
+\lhead{\textsf{\expandafter{\@title}}}
+\makeatother
+\rhead{}
+\cfoot{}
+\setlength{\headheight}{15pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[C]{\sffamily\thepage} % except the center
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+%% MATHS
+\RequirePackage{bm,amsmath}
+\allowdisplaybreaks
+
+%% GRAPHICS
+\RequirePackage{graphicx}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.8}
+
+%\RequirePackage[section]{placeins}
+
+%% SECTION TITLES
+\RequirePackage[compact,sf,bf]{titlesec}
+\titleformat{\section}[block]
+  {\fontsize{15}{17}\bfseries\sffamily}
+  {\thesection}
+  {0.4em}{}
+\titleformat{\subsection}[block]
+  {\fontsize{12}{14}\bfseries\sffamily}
+  {\thesubsection}
+  {0.4em}{}
+\titlespacing{\section}{0pt}{*5}{*1}
+\titlespacing{\subsection}{0pt}{*2}{*0.2}
+
+
+%% TITLE PAGE
+\def\Date{\number\day}
+\def\Month{\ifcase\month\or
+ January\or February\or March\or April\or May\or June\or
+ July\or August\or September\or October\or November\or December\fi}
+\def\Year{\number\year}
+
+\makeatletter
+\def\addresses#1{\gdef\@addresses{#1}}\def\@addresses{??}
+\def\cover{{\sffamily\setcounter{page}{0}
+        \thispagestyle{empty}
+        \placefig{2}{1.5}{width=5cm}{monash2}
+        \placefig{16.9}{1.5}{width=2.1cm}{MBusSchool}
+        \begin{textblock}{4}(16.9,4)ISSN 1440-771X\end{textblock}
+        \begin{textblock}{7}(12.7,27.9)\hfill
+        \includegraphics[height=0.7cm]{AACSB}~~~
+        \includegraphics[height=0.7cm]{EQUIS}~~~
+        \includegraphics[height=0.7cm]{AMBA}
+        \end{textblock}
+        \vspace*{2cm}
+        \begin{center}\Large
+        Department of Econometrics and Business Statistics\\[.5cm]
+        \footnotesize http://monash.edu/business/ebs/research/publications
+        \end{center}\vspace{2cm}
+        \begin{center}
+        \fbox{\parbox{14cm}{\begin{onehalfspace}\centering\Huge\vspace*{0.3cm}
+                \textsf{\textbf{\expandafter{\@title}}}\vspace{1cm}\par
+                \LARGE\@author\end{onehalfspace}
+        }}
+        \end{center}
+        \vfill
+                \begin{center}\Large
+                \Month~\Year\\[1cm]
+                Working Paper \@wp
+        \end{center}\vspace*{2cm}}}
+\def\pageone{{\sffamily\setstretch{1}%
+        \thispagestyle{empty}%
+        \vbox to \textheight{%
+        \raggedright\baselineskip=1.2cm
+     {\fontsize{24.88}{30}\sffamily\textbf{\expandafter{\@title}}}
+        \vspace{2cm}\par
+        \hspace{1cm}\parbox{14cm}{\sffamily\large\@addresses}\vspace{1cm}\vfill
+        \hspace{1cm}{\large\Date~\Month~\Year}\vss}}}
+\def\blindtitle{{\sffamily
+     \thispagestyle{plain}\raggedright\baselineskip=1.2cm
+     {\fontsize{24.88}{30}\sffamily\textbf{\expandafter{\@title}}}\vspace{1cm}\par
+        }}
+\def\titlepage{{\cover\newpage\pageone\newpage\blindtitle}}
+
+\def\blind{\def\titlepage{{\blindtitle}}\let\maketitle\blindtitle}
+\def\titlepageonly{\def\titlepage{{\pageone\end{document}}}}
+\def\nocover{\def\titlepage{{\pageone\newpage\blindtitle}}\let\maketitle\titlepage}
+\let\maketitle\titlepage
+\makeatother
+
+%% SPACING
+\RequirePackage{setspace}
+\spacing{1.5}
+
+%% LINE AND PAGE BREAKING
+\sloppy
+\clubpenalty = 10000
+\widowpenalty = 10000
+\brokenpenalty = 10000
+\RequirePackage{microtype}
+
+%% PARAGRAPH BREAKS
+\setlength{\parskip}{1.4ex}
+\setlength{\parindent}{0em}
+
+%% HYPERLINKS
+\RequirePackage{xcolor} % Needed for links
+\definecolor{darkblue}{rgb}{0,0,.6}
+\RequirePackage{url}
+
+\makeatletter
+\@ifpackageloaded{hyperref}{}{\RequirePackage{hyperref}}
+\makeatother
+\hypersetup{
+     citecolor=0 0 0,
+     breaklinks=true,
+     bookmarksopen=true,
+     bookmarksnumbered=true,
+     linkcolor=darkblue,
+     urlcolor=blue,
+     citecolor=darkblue,
+     colorlinks=true}
+
+%% KEYWORDS
+\newenvironment{keywords}{\par\vspace{0.5cm}\noindent{\sffamily\textbf{Keywords:}}}{\vspace{0.25cm}\par\hrule\vspace{0.5cm}\par}
+
+%% ABSTRACT
+\renewenvironment{abstract}{\begin{minipage}{\textwidth}\parskip=1.4ex\noindent
+\hrule\vspace{0.1cm}\par{\sffamily\textbf{\abstractname}}\newline}
+  {\end{minipage}}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[showonlyrefs]{mathtools}
+\usepackage[no-weekday]{eukdate}
+
+%% BIBLIOGRAPHY
+
+\makeatletter
+\@ifpackageloaded{biblatex}{}{\usepackage[style=authoryear-comp, backend=biber, natbib=true]{biblatex}}
+\makeatother
+\ExecuteBibliographyOptions{bibencoding=utf8,minnames=1,maxnames=3, maxbibnames=99,dashed=false,terseinits=true,giveninits=true,uniquename=false,uniquelist=false,doi=false, isbn=false,url=true,sortcites=false}
+
+\DeclareFieldFormat{url}{\texttt{\url{#1}}}
+\DeclareFieldFormat[article]{pages}{#1}
+\DeclareFieldFormat[inproceedings]{pages}{\lowercase{pp.}#1}
+\DeclareFieldFormat[incollection]{pages}{\lowercase{pp.}#1}
+\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+\DeclareFieldFormat[article]{title}{\MakeCapital{#1}}
+\DeclareFieldFormat[inproceedings]{title}{#1}
+\DeclareFieldFormat{shorthandwidth}{#1}
+% No dot before number of articles
+\usepackage{xpatch}
+\xpatchbibmacro{volume+number+eid}{\setunit*{\adddot}}{}{}{}
+% Remove In: for an article.
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{%
+  \printtext{\bibstring{in}\intitlepunct}}}
+
+\makeatletter
+\DeclareDelimFormat[cbx@textcite]{nameyeardelim}{\addspace}
+\makeatother
+\renewcommand*{\finalnamedelim}{%
+  %\ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}% there really should be no funny Oxford comma business here
+  \addspace\&\space}
+
+\RequirePackage[absolute,overlay]{textpos}
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+\def\placefig#1#2#3#4{\begin{textblock}{.1}(#1,#2)\rlap{\includegraphics[#3]{#4}}\end{textblock}}
+
+\nocover
+
+
+\author{Rob J~Hyndman}
+\addresses{\textbf{Rob J Hyndman}\newline
+Department of Econometrics \& Business Statistics\newline Monash University, Clayton VIC 3800, Australia
+\newline{Email: \href{mailto:Rob.Hyndman@monash.edu}{\nolinkurl{Rob.Hyndman@monash.edu}}}\\[1cm]
+}
+
+\date{\sf\Date~\Month~\Year}
+\makeatletter
+ \lfoot{\sf Hyndman: \@date}
+\makeatother
+
+\usepackage[australian]{babel}
+\spacing{1.1}
+\usepackage[lf,t]{carlito}
+\DeclareFieldFormat[article]{url}{}
+
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Forecasting competitions are now so widespread that it is often forgotten how controversial they were when first held, and how influential they have been over the years. I briefly review the history of forecasting competitions, and discuss what we have learned about their design and implementation, and what they can tell us about forecasting. I also provide a few suggestions for potential future competitions, and for research about forecasting based on competitions.
+\end{abstract}
+\begin{keywords}
+evaluation, forecasting accuracy, Kaggle, M competitions, neural networks, prediction intervals, probability scoring, time series
+\end{keywords}
+
+Prediction competitions go back millennia; for example, rival diviners in ancient Greece competed to predict the future more accurately \autocite[p124]{Raphals2013}. However, for general time series forecasting (i.e., predicting the future of regularly observed data over time), the history is much more limited and goes back only about 50 years. In fact, it wasn't until computers were widely available that it became feasible for forecasting competitions to be held at all.
+
+Time series forecasting competitions have been a feature of the \emph{International Journal of Forecasting} and the \emph{Journal of Forecasting} since the journals were founded in the early 1980s. This strong emphasis on large scale empirical evaluations of forecasting methods, and the need to compare newly proposed methods against existing state-of-the-art methods, has played a large part in pushing researchers to develop new methods that can be shown to work in practice \autocite{FildesOrd2002}.
+
+Researchers new to forecasting are often surprised to learn how controversial such competitions were when they were first conducted about 50 years ago. I review this controversy in \autoref{sec:controversy}. The influential series of Makridakis competitions are discussed in \autoref{sec:makridakis}, and other forecasting competitions are described in \autoref{sec:other}. Finally, I provide a few comments on the future of forecasting competitions, and research about forecasting competitions, in \autoref{sec:future}. I do not cover forecasting competitions that are not based around time series data.
+
+\hypertarget{sec:controversy}{%
+\section{Early controversy}\label{sec:controversy}}
+
+The earliest forecasting competitions were between methods rather than people. It was not feasible, given the communication tools available at the time, to conduct a large-scale forecasting competition involving many entrants spread around the world. So the first few competitions were by individual researchers comparing the accuracy of several methods applied to multiple time series. I only include the first two of these. From 1980 onwards, my scope is restricted to competitions involving multiple entrants.
+
+\hypertarget{nottingham-studies}{%
+\subsection*{Nottingham studies}\label{nottingham-studies}}
+\addcontentsline{toc}{subsection}{Nottingham studies}
+
+The earliest non-trivial study of time series forecast accuracy was probably by David Reid as part of his PhD at the University of Nottingham \autocite{reidphd}. Building on his work, Paul Newbold and Clive Granger conducted a study of forecast accuracy involving 106 time series \autocite{NewboldGranger74}. Although they did not invite others to participate, they did start the discussion on what forecasting methods are the most accurate for different types of time series. They presented the ideas to the Royal Statistical Society, and the subsequent discussion reveals some of the erroneous thinking of the time.
+
+One important feature of the results was the empirical demonstration that forecast combinations improve accuracy. A similar result had been demonstrated as far back as Francis Galton in 1907 \autocite{Wallis2014}, yet one discussant (GJA Stern) stated
+
+\begin{quote}
+``The combined forecasting methods seem to me to be non-starters \ldots{} Is a combined method not in danger of falling between two stools?''
+\end{quote}
+
+Maurice Priestley, later to become the founding and long-serving Editor-in-Chief of the \emph{Journal of Time Series Analysis}, said
+
+\begin{quote}
+``The authors' suggestion about combining different forecasts is an interesting one, but its validity would seem to depend on the assumption that the model used in the Box-Jenkins approach is inadequate---for otherwise, the Box-Jenkins forecast alone would be optimal.''
+\end{quote}
+
+This reveals a view commonly held (even today) that there is some single model that describes the data generating process, and that the job of a forecaster is to find it. This seems patently absurd to me --- real data comes from much more complicated, non-linear, non-stationary processes than any model we might dream up --- and George Box himself famously dismissed it saying ``All models are wrong but some are useful''.
+
+There was also a strong bias against automatic forecasting procedures. For example, Gwilym Jenkins said
+
+\begin{quote}
+``The fact remains that model building is best done by the human brain and is inevitably an iterative process.''
+\end{quote}
+
+Perhaps Jenkins was reflecting the widely held view that the type of intuitive thinking and extensive experience typically involved in model building cannot be represented by an algorithm or mathematical model. Subsequent history has shown that to be untrue provided enough data are available, and the model is flexible enough to capture the variation seen in real data.
+
+Of course human judgment still has value in forecasting, as demonstrated by \textcite{Petropoulos2018} who show that combining judgment with statistical models can lead to statistically significant improvements in forecast accuracy.
+
+\hypertarget{sec:makridakis}{%
+\section{The Makridakis competitions}\label{sec:makridakis}}
+
+\hypertarget{makridakis-hibon-1979}{%
+\subsection*{Makridakis \& Hibon (1979)}\label{makridakis-hibon-1979}}
+\addcontentsline{toc}{subsection}{Makridakis \& Hibon (1979)}
+
+Five years later, Spyros Makridakis and Michèle Hibon put together a collection of 111 time series and compared many more forecasting methods. They also presented the results to the Royal Statistical Society. The resulting paper \autocite{Makridakis1979} seems to have caused quite a stir, and the discussion published along with the paper is entertaining, and at times somewhat shocking.
+
+Maurice Priestley was in attendance again and was clinging to the view that there was a true model waiting to be discovered:
+
+\begin{quote}
+``The performance of any particular technique when applied to a particular series depends essentially on (a) the model which the series obeys; (b) our ability to identify and fit this model correctly and (c) the criterion chosen to measure the forecasting accuracy.''
+\end{quote}
+
+Makridakis and Hibon replied
+
+\begin{quote}
+``There is a fact that Professor Priestley must accept: empirical evidence is in \emph{disagreement} with his theoretical arguments.''
+\end{quote}
+
+Many of the discussants seem to have been enamoured with ARIMA models.
+
+\begin{quote}
+``It is amazing to me, however, that after all this exercise in identifying models, transforming and so on, that the autoregressive moving averages come out so badly. I wonder whether it might be partly due to the authors not using the backwards forecasting approach to obtain the initial errors.'' --- \emph{W.G. Gilchrist}
+\end{quote}
+
+\begin{quote}
+``I find it hard to believe that Box-Jenkins, if properly applied, can actually be worse than so many of the simple methods.'' --- \emph{Chris Chatfield}
+\end{quote}
+
+At times, the discussion degenerated to questioning the competency of the authors:
+
+\begin{quote}
+``Why do empirical studies sometimes give different answers? It may depend on the selected sample of time series, but I suspect it is more likely to depend on the skill of the analyst \ldots{} these authors are more at home with simple procedures than with Box-Jenkins.'' --- \emph{Chris Chatfield}
+\end{quote}
+
+Again, Makridakis \& Hibon responded:
+
+\begin{quote}
+``Dr Chatfield expresses some personal views about the first author \ldots{} It might be useful for Dr Chatfield to read some of the psychological literature quoted in the main paper, and he can then learn a little more about biases and how they affect prior probabilities.''
+\end{quote}
+
+\hypertarget{m-competition}{%
+\subsection*{M-competition}\label{m-competition}}
+\addcontentsline{toc}{subsection}{M-competition}
+
+In response to the hostility and charge of incompetence, Makridakis \& Hibon followed up with a new competition involving 1001 series. This time anyone could submit forecasts, making this the first true forecasting competition (where multiple people could submit entries) as far as I am aware. They also used multiple forecast measures to determine the most accurate method.
+
+The 1001 time series were taken from demography, industry and economics, and ranged in length between 9 and 132 observations. All the data were either non-seasonal (e.g., annual), quarterly or monthly. Curiously, all the data were positive, which made it possible to compute mean absolute percentage errors, but was not really reflective of the population of real data.
+
+The results of their 1979 paper were largely confirmed. The four main findings \autocite[taken from][]{Fildes1998} were:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Statistically sophisticated or complex methods do not typically produce more accurate forecasts than simpler ones.
+\item
+  The ranking of the performance of the various methods varies according to the accuracy measure being used.
+\item
+  The accuracy of the combination of various methods outperforms, on average, the individual methods being combined, and does well in comparison with other methods
+\item
+  The performance of the various methods depends on the length of the forecasting horizon.
+\end{enumerate}
+
+Remarkably, the best performing method overall was ``DSES'', which used a classical multiplicative decomposition \autocite{fpp2} with simple exponential smoothing used to forecast the seasonally adjusted data, and a seasonal naive method used to forecast the seasonal component. The two forecasts were then combined. This extremely simple, and somewhat ad hoc approach, out-performed the best that experienced academic researchers could produce.
+
+The paper describing the competition \autocite{M1} had a profound effect on forecasting research. It caused researchers to:
+
+\begin{itemize}
+\tightlist
+\item
+  focus attention on what models produced good forecasts, rather than on the mathematical properties of those models;
+\item
+  consider how to automate forecasting methods;
+\item
+  be aware of the dangers of over-fitting;
+\item
+  treat forecasting as a different problem from time series analysis.
+\end{itemize}
+
+These now seem like common-sense to forecasters, but they were revolutionary ideas in 1982. Even today, I often have to explain to other academics why forecasting is not just an application of time series analysis.
+
+\hypertarget{m2-competition}{%
+\subsection*{M2-competition}\label{m2-competition}}
+\addcontentsline{toc}{subsection}{M2-competition}
+
+A few years later, a second competition was run \autocite{M2} and used only 29 series, but with much richer contextual information, and run in real-time. Given the small sample size, and the use of additional information, few general conclusions about time series forecasting methods could be drawn.
+
+\hypertarget{m3-competition}{%
+\subsection*{M3-competition}\label{m3-competition}}
+\addcontentsline{toc}{subsection}{M3-competition}
+
+In 1998, Makridakis \& Hibon ran their third competition, intending to take account of new methods developed since their first competition nearly two decades earlier. They wrote
+
+\begin{quote}
+``The M3-Competition is a final attempt by the authors to settle the accuracy issue of various time series methods\ldots{} The extension involves the inclusion of more methods/researchers (in particular in the areas of neural networks and expert systems) and more series.''
+\end{quote}
+
+It is brave of any academic to claim that their work is ``a final attempt''!
+
+This competition involved 3003 time series, all taken from business, demography, finance and economics, and ranging in length between 14 and 126 observations. Again, the data were all either non-seasonal (e.g., annual), quarterly or monthly, and all were positive. Twenty-four entries were received (some from the organizers).
+
+In the published results, \textcite{M3} claimed that the M3 competition upheld the findings of their earlier work, yet the results did not provide the evidence supporting the first finding (that simple methods outperform more complicated methods). The best two methods were not obviously ``simple'', and the Box-Jenkins' ARIMA models did much better than in the previous competitions.
+
+The top performing entry was the ``Theta'' method which was described by \textcite{theta00} in a highly complicated and confusing manner. Later, \textcite{HB03} showed that the Theta method was equivalent to an average of a linear regression and simple exponential smoothing with drift. So it turned out to be relatively simple after all, but Makridakis \& Hibon could not have known that in 2000.
+
+The other method that performed extremely well in the M3 competition was the commercial software package ForecastPro. The algorithm used is not public, but enough information has been revealed that we can be sure it is not simple. The algorithm selects between an exponential smoothing and ARIMA model based on some state space approximations and a BIC calculation \autocite{Goodrich2000}.
+
+The ForecastPro team also submitted an entry using an automatic algorithm to select an ARIMA model (labelled \texttt{BJ-automatic} in the competition), and it did much better than in any previous competitions, and better than the Holt-Winters' method. It seems that the tendency to over-fit ARIMA models had been addressed in the 20 years since the first competition (ForecastPro uses the BIC to penalize over-parametrized models).
+
+Even after more than 20 years of forecasting competitions, the M3 competition was still generating controversy. One issue was around the statistical significance of the results \autocite{Stekler01}, and even whether it made sense to do inference on the results when there is no well-defined population of possible time series. The M3 data constitute a convenience sample, and even if it can be established that method A produces statistically significantly better forecasts than method B, it is not clear what population of time series that conclusion applies to. This issue is explored in \textcite{SKAM2018}, building on the work of \textcite{m3pca}.
+
+A second area of concern was the potential to cheat. In particular, there was partial revelation of the nature of the test sets part way through the competition \autocite{Goodrich2001}. This allowed competitors to adjust their methods on the basis of the test set. While allowing a sequence of entrants with feedback on performance is now a standard and valuable feature of many prediction competitions \autocite{AH11}, it must be done carefully to avoid tailoring methods to fit the test set.
+
+There were also many calls for extensions to the competition including
+
+\begin{itemize}
+\tightlist
+\item
+  evaluating prediction intervals \autocite{Goodrich2001};
+\item
+  including higher frequency data such as weekly and daily data \autocite{Goodrich2001};
+\item
+  evaluating multivariate forecasting models \autocite{Granger2001};
+\item
+  evaluating the reasons behind the differences between methods \autocite{Hyndman2001}, and
+\item
+  identifying the circumstances where substantial improvements are achievable \autocite{Fildes2001}.
+\end{itemize}
+
+Finally, an issue that has arisen since the competition is the reproducibility of the results. Although the test data and the submitted forecasts are all publicly available, the computed accuracy scores do not match those in the published paper \autocite{Hyndsightevidence}. This is part of a broader reproducibility problem in statistics \autocite{Peng2011} and forecasting in particular \autocites{evanschitzky2010replications}{boylan2015reproducibility}.
+
+\hypertarget{m4-competition}{%
+\subsection*{M4-competition}\label{m4-competition}}
+\addcontentsline{toc}{subsection}{M4-competition}
+
+The most recent competition in this series organized by Spyros Makridakis has been the M4 competition\footnote{\url{https://www.m4.unic.ac.cy/}} comprising 100,000 time series. Compared to the M and M3 competitions, this one involved a few new features:
+
+\begin{itemize}
+\tightlist
+\item
+  Weekly, daily and hourly data were included, along with annual, quarterly and monthly data.
+\item
+  Participants were invited to submit prediction intervals as well as point forecasts.
+\item
+  There was a strong emphasis on reproducibility, and competitors were required to post their code on Github.
+\end{itemize}
+
+Extensive discussion of the results of this competition are available in this issue of the \emph{International Journal of Forecasting}, and so will not be repeated here.
+
+\hypertarget{sec:other}{%
+\section{Other competitions}\label{sec:other}}
+
+\hypertarget{sante-fe-competitions}{%
+\subsection*{Sante Fe competitions}\label{sante-fe-competitions}}
+\addcontentsline{toc}{subsection}{Sante Fe competitions}
+
+Parallel to the series of Makridakis competitions, mathematicians and physicists were also interested in forecasting, and ran their own competition at the Santa Fe Institute, with entries closing in January 1992 \autocite{GW1993}. Only six time series were included, but these were much longer than those discussed above, ranging in length from 1000 observations to 34000 observations. Three of the series were from the physical or medical sciences, one was musical, and one was numerically simulated. Only one series (currency exchange data) was from the same domains as those used in other competitions. The choice of series led to a much greater focus on computationally intensive nonlinear algorithms. With such a small sample, no general conclusions were possible.
+
+\hypertarget{kdd-cup}{%
+\subsection*{KDD cup}\label{kdd-cup}}
+\addcontentsline{toc}{subsection}{KDD cup}
+
+Since 1997, the data mining community have held an annual competition known as the KDD cup\footnote{\url{http://kdd.org/kdd-cup}} organized by the Association for Computing Machinery's Special Interest Group on Knowledge Discovery and Data Mining (ACM SIGKDD). It has generated attention on a wide range of prediction~problems and associated methods; occasionally the competition has involved time series forecasting. For example, KDD Cup 2018\footnote{\url{https://www.kdd.org/kdd2018/kdd-cup}} was a time series competition, where participants were asked to predict air pollution levels for two cities, Beijing, China, and London, UK. The competition ran for 31 days, and forecasts were to be made on each day, for the following 48 hours.
+
+\hypertarget{neural-network-competitions}{%
+\subsection*{Neural network competitions}\label{neural-network-competitions}}
+\addcontentsline{toc}{subsection}{Neural network competitions}
+
+There was only one submission that used neural networks in the M3 competition, but it did relatively poorly. To encourage additional submissions, Sven Crone organized a subsequent competition (the NN3) in 2006 involving 111 of the monthly M3 series. Over 60 algorithms were submitted, although none outperformed the original M3 contestants. The paper describing the competition results \autocite{NN3} was not published until 2011.
+
+This supports the consensus in the forecasting community, that neural networks (and other highly non-linear and nonparametric methods) are not well suited to time series forecasting due to the relatively short nature of most time series. The longest series in this competition was only 126 observations long. That is simply not enough data to fit a good neural network model.
+
+There were some follow-up competitions\footnote{\url{http://www.neural-forecasting-competition.com/}}, including the NN5 and NNGC1 competitions, but none of the results have ever been published.
+
+\hypertarget{kaggle-time-series-competitions}{%
+\subsection*{Kaggle time series competitions}\label{kaggle-time-series-competitions}}
+\addcontentsline{toc}{subsection}{Kaggle time series competitions}
+
+Kaggle was the first online platform dedicated to data mining competitions, established in 2010 by Australian economist Anthony Goldbloom. Most Kaggle competitions have involved cross-sectional prediction or classification, although a few have involved time series forecasting.
+
+One of the earliest Kaggle competitions was on tourism forecasting, organized by George Athanasopoulos and me. It involved forecasting 793 monthly, quarterly and annual time series, all associated with tourism. The best methods were described in papers published by the \emph{International Journal of Forecasting} \autocite{AHSW11}. Part of the competition (not open to outside competitors) explored the advantage of using explanatory variables (such as CPI and prices) over purely time series models. Surprisingly, the purely time series forecasts were better than the models that used explanatory variables, even ex post (with perfect knowledge of the future explanatory variables). Most likely, this was due to the relationships between the response and predictor variables changing over time.
+
+In 2017, Oren Anava and Vitaly Kuznetsov organized a Web traffic\footnote{\url{https://www.kaggle.com/c/web-traffic-time-series-forecasting}} competition on Kaggle. Here the task was to forecast future web traffic for approximately 145,000 Wikipedia articles. The winning method used a recurrent neural network, trained on the entire data set, with autoregressive predictors, along with some meta-data features such as country and agent used, along with time series features such as autocorrelations. It is interesting to consider why this worked, whereas neural networks failed in the M3 and NN3 competitions. One likely factor was that the data were relatively homogeneous, and the network could be trained across all series. In both the M3 and NN3 competitions, different networks were used for each of the relatively short time series.
+
+One of the great benefits of the Kaggle platform (and others like it) is that it provides a leaderboard and allows multiple submissions. This has been found to lead to much better results as teams compete against each other over the duration of the competition \autocite{AH11}. Of course, the danger is that the forecasts will over-fit the test data, so several precautions are taken to limit that possibility. First, only a few submissions per day are allowed, making it difficult for teams to gain enough information to fit the test data too closely. Second, the accuracy statistics available to contestants during the competition are computed on a small subset of the actual test data, with the final accuracy computed on the remaining part of the test set only available after the competition is completed.
+
+\hypertarget{global-energy-forecasting-competitions}{%
+\subsection*{Global Energy Forecasting Competitions}\label{global-energy-forecasting-competitions}}
+\addcontentsline{toc}{subsection}{Global Energy Forecasting Competitions}
+
+The GEFCom series of competitions\footnote{\url{http://gefcom.org}} were organized by Tao Hong in conjunction with the \emph{International Journal of Forecasting}, and comprised three competitions, each involving several parts. They have been influential in focusing research attention on important issues in energy forecasting, and in providing benchmark methods and data on which to compare new methods. A feature of the competitions has been that winning entries must post complete code implementing their methods, and submit an article to the \emph{International Journal of Forecasting} describing their approach.
+
+The 2012 competition \autocite{gefcom2012} had five main aims:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  improve the forecasting practices of the utility industry;
+\item
+  bring together state-of-the-art techniques for energy forecasting;
+\item
+  bridge the gap between academic research and industry practice;
+\item
+  promote analytics in power and energy education;
+\item
+  prepare the industry to overcome the forecasting challenges brought by the smart grid technologies and renewable integration needs.
+\end{enumerate}
+
+It comprised two tracks: hierarchical load and wind power, where contestants were asked to forecast sections of missing data and (in the case of load) one week of future data. So for the most part it was not truly forecasting, and it looked at point prediction accuracy only.
+
+The 2014 competition \autocite{gefcom2014} included four tracks: load forecasting, price forecasting, wind forecasting and solar forecasting, and was the first competition to require entrants to submit complete probability distributions rather than simply point forecasts. These were submitted in the form of 99 percentiles for each forecast period. The competition used a rolling forecast process, mimicking what happens in most real forecasting tasks, where forecasts needed to be made each week for 15 consecutive weeks. In total, 581 contestants participated from 61 countries. Probabilistic forecasts were assessed using quantile scoring.
+
+The 2017 competition \autocite{GEFCom2017} involved (1) hierarchical probabilistic forecasting of hourly electricity load for ISO New England, with zones and total load forecasts required; and (2) probabilistic load forecasting of 183 delivery point meters of a US utility. This time only the deciles for each forecast distribution were submitted, and again quantile scoring was used for evaluation. In total, there were 177 entrants. Most of the resulting papers are yet to be published.
+
+\hypertarget{sec:future}{%
+\section{Some thoughts on the future}\label{sec:future}}
+
+There is no doubt that forecasting competitions have played an important role in advancing knowledge of what forecasting methods work. There has been much less research done on the conditions under which different methods work well. With the publication of the large data base of time series and forecasts associated with the M4 competition, researchers now have an opportunity to explore this latter issue in considerable detail. The data and the forecasts from the M4 competition are available in the R package \emph{M4comp2018} \autocite{RM4comp2018}.
+
+Data and forecasts from the M3 competition are available in the \emph{MComp} package \autocite{RMcomp}, which also includes data (but not forecasts) from the M-competition. The \emph{Tcomp} package contains data from the Kaggle tourism competition \autocite{RTcomp}, and data from the NN3, NN5, NNGC1 and GEFCom2012 competitions are provided in the \emph{tscompdata} package \autocite{Rtscompdata}. It would also be helpful for other forecasting competition data (and the submitted forecasts) to be made publicly available in the interests of promoting research around the efficacy of different forecasting methods. For example, what are the current limits of forecast accuracy in different application areas, and how have these varied over time? Given access to all the forecasting entries in a competition, can the winning approach be beaten using a combination of entries? We can begin to explore these questions using the M4 data, but it would be better for all forecasting competitions to provide such data as a public good.
+
+A nice side-effect of some competitions is that they create a benchmark data set with well-tested benchmark methods. This has worked well for the M3 data, for example, and for many years new time series forecasting algorithms~have been compared to these published results.~With the publication of the M4 data, there is now a useful and up-to-date set of benchmarks against which to test new forecasting methods. It could reasonably be argued that any research paper proposing a new general time series forecasting method should not be published unless it can be shown to perform at least as well as existing methods on some well-defined subset of the M4 data.
+
+However, over-study of a single benchmark data set means that methods will eventually over-fit the published test~data. I suspect this has happened with the M3 data over the past 20 years, and it is likely to happen with the M4 data, despite its much larger size. Therefore,~a wider range of benchmarks is desirable, and these need to be updated regularly. Consequently, there can never be a ``final forecasting competition''.
+
+One feature of the Makridakis competitions and the GEFCom competitions that has meant they have had a substantial impact on forecasting practice is their association with the \emph{International Journal of Forecasting}. Competitions that have been subject to careful academic scrutiny, where the data and results have been the focus of subsequent research papers, have rightfully led to changes in forecasting practice and have set benchmarks for future forecasting methodological developments.
+
+In surveying the last 40 years of forecasting competitions, it is apparent that the objective for each competition was often unclear, perhaps even to the organizers. This has led, for example, to confusion over the domain to which the results apply --- if a method does well in one competition, what can be said about how well it will do on data from a specific company? It would be better if future competitions were clear about the domain to which they apply (by carefully defining the population of time series from which the sample is drawn).
+
+The frequent use of percentage errors also makes the results somewhat difficult to apply in general. It is known that minimizing absolute percentage errors tends to support severe underforecasts \autocite{Gneiting2011}. It would be better if future competitions used objective criteria that are based on well-recognized attributes of the forecast distribution. For example, minimizing MASE \autocite{HK06} leads to estimates of the median of the forecast distribution, as it is equivalent to minimzing the mean absolute error.
+
+There are many features of time series forecasting that have not been studied under competition conditions, and future competitions will surely seek to address these.
+
+For example, few time series competitions have explored forecast distribution accuracy (as distinct from point forecast accuracy). The M4 competition is the first general competition to make a start in this direction with prediction interval accuracy being measured, but it is much richer to measure the whole forecast distribution. The GEFCom2014 and GEFCom2017 competitions involved forecast distributions in the context of energy forecasting. It would be preferable to see the forecast distributions being used in all future forecasting competitions.
+
+New competitions will also need to select accuracy metrics that are appropriate to the forecasting task, which are easy to explain and understand, and which are independent of the scale of the data. MAPEs, and related criteria, are clearly inappropriate when the data contain zeros, or are on an interval rather than a ratio scale. \textcite{HK06} introduced the MASE to address this issue, but it is only relevant for point forecasting. For interval forecasting, Winkler scores \autocite{Winkler1972} have been widely used, but are not scale-free. The scaled version of Winkler scores used to assess interval accuracy in the M4 competition seems rather ad hoc and its properties are unknown. In any case, \textcite{Askanazi2018} argue that interval forecasts comparisons are problematic in several ways and should be abandoned for density forecasts. Probabilistic forecasts such as densities can be evaluated using proper scoring rules, and scale-free rules such as log density scores are available. But as these are foreign to many practising forecasts, there is a need for textbooks to introduce clear and accessible explanations of how to compute them and what they tell us.
+
+No competition has involved large-scale multivariate time series forecasting. While many of the time series in the competitions are probably related to each other, this information has not been provided. Again, the GEFCom competitions have been ground-breaking in this respect also, by requiring true multivariate forecasts to be provided for the energy demand in different regions of the US, but the winning entries do not appear to have exploited the cross-correlations between regions. Some further thoughts on the design of multivariate forecasting competitions are provided by \textcite{FildesOrd2002}.
+
+I know of no large-scale forecasting competition for finance data (e.g., stock prices or returns), yet this would seem to be of great potential interest.
+
+The frequency of the time series studied in competitions has changed from only annual, quarterly and monthly data in the competitions up to the M3 competition, to more frequent observations such as hourly, daily, and weekly in some subsequent competitions. As data are collected more frequently using automatic sensors and scanning devices, the need for higher frequency forecasts is also increasing. Higher frequency data also brings with it some new challenges including multiple seasonal patterns \autocite{DHS11}, irregularly spaced observations, and the need to generate forecasts rapidly.
+
+There has also been little focus on the conditions under which explanatory variables are useful when forecasting. The tourism forecasting competition included explanatory variables which proved to be unhelpful. The GEFCom competitions have all involved weather data as useful predictors for energy forecasting, but clearly these predictors also need forecasting, and over a long forecast horizon it may be better not to use them at all.
+
+The \emph{International Journal of Forecasting} has been at the forefront of research surrounding forecasting competitions since its inception, and the suggestions made here should provide enough ideas to fuel research in this space for many years to come.
+
+\printbibliography
+
+\end{document}
